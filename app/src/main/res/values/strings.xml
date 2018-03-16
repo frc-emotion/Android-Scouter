@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Scouter</string>
+    <string name="viewInfo">Info</string>
+    <string name="editName">Scouter Name</string>
+    <string name="editTeam">Team Name</string>
+    <string name="checkAutoLine">Pass Auto Line</string>
+    <string name="viewAuto">Autonomous</string>
+    <string name="checkHome">Cube in home switch</string>
+    <string name="checkOpp">Cube in opponent switch</string>
+    <string name="checkAutoScale">Cube in scale</string>
+    <string name="viewTeleop">Teleop</string>
+    <string name="cubesHome">Home Switch</string>
+
+</resources>

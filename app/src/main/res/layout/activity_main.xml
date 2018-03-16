@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.team2658.scouter.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:divider="?android:dividerHorizontal"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:hint="@string/editName"
+                android:inputType="textNoSuggestions"
+                android:textAlignment="textStart" />
+
+            <EditText
+                android:id="@+id/editTeamNumber"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:hint="@string/editTeam"
+                android:inputType="number"
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:id="@+id/viewAuto"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="monospace"
+                android:text="@string/viewAuto"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/autoLineCheck"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/checkAutoLine"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <CheckBox
+                android:id="@+id/autoHomeCheck"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/checkHome"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <CheckBox
+                android:id="@+id/autoOppCheck"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/checkOpp"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <CheckBox
+                android:id="@+id/autoScaleCheck"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/checkAutoScale"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+            <TextView
+                android:id="@+id/viewTeleop"
+                android:layout_width="300dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="monospace"
+                android:text="@string/viewTeleop"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/cubesHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/cubesHome"
+                    android:textSize="18sp" />
+
+                <Button
+                android:id="@+id/decCubesHome"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/integer_number1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="0"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/incCubesHome"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:text="+" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+</RelativeLayout>
