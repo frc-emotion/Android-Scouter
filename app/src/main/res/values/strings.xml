@@ -10,5 +10,23 @@
     <string name="checkAutoScale">Cube in scale</string>
     <string name="viewTeleop">Teleop</string>
     <string name="cubesHome">Home Switch</string>
+    <string name="cubesOpp">Enemy Switch</string>
+    <string name="cubesScale">Scale</string>
+    <string name="cubesDrop">Cubes Dropped</string>
+    <string name="pen">Penalties</string>
+    <string name="viewClimb">Climb</string>
+    <string name="submit">Submit</string>
+    <string name="clear">Clear</string>
 
+    <string name="climb_hint">How did the climb go?</string>
+
+    <string-array name="climb_options">
+        <item>Climbed</item>
+        <item>Climbed with 1 extra</item>
+        <item>Climbed with 2 extra</item>
+        <item>Climbed but failed</item>
+        <item>Platform</item>
+        <item>Levitate Powerup</item>
+        <item>Just did not try</item>
+    </string-array>
 </resources>

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initWidgets()
     {
         teamNumber = (EditText) findViewById(R.id.editTeamNumber);  //init text edit for team number
-        autoNumHomeCubes = (TextView) findViewById(R.id.integer_number1);   //init text view for autonomous home cubes
+        autoNumHomeCubes = (TextView) findViewById(R.id.integer_number_home);   //init text view for autonomous home cubes
 
         inc1 = (Button) findViewById(R.id.incCubesHome);    //init increment button
         inc1.setOnClickListener(this);  //set the click listener for the method onClick
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spreadsheetWebService = retrofit.create(ForumsWebService.class);
     }
 
-    private void submitData()
+    public void submitData(View V)
     {
         String teamNum = teamNumber.getText().toString();   //convert data in text edit to string
 
@@ -89,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(showTextHomeCubes)
             autoNumHomeCubes.setText("" + autoHomeCubes);   //refresh view
+    }
+
+    public void clearData(View V)
+    {
+        clear();
     }
 
     private void clear()
