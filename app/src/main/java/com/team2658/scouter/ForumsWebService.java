@@ -14,17 +14,17 @@ public interface ForumsWebService {
     @POST("e/1FAIpQLSddTcjsg72awkFgC7B7zAsaJX6y3VaxCv5UPOBfp0QDMcbwDQ/formResponse")
     @FormUrlEncoded
     Call<Void> completeForum(
-            @Field("entry.829700598") String scoutName,
-            @Field("entry.499828888") String teamNum,
-            @Field("entry.1179559190") String autoLine,
-            @Field("entry.1876919081") String autoHome,
-            @Field("entry.1980565669") String autoOpponent,
-            @Field("entry.2107845895") String autoScale,
-            @Field("entry.799149728") String telHome,
-            @Field("entry.721096757") String telOpponent,
-            @Field("entry.898469043") String telScale,
-            @Field("entry.1297945363") String cubesDropped,
-            @Field("entry.2079952567") String penalties,
-            @Field("entry.652412432") String climbProcess
+            @Field("entry.829700598") String scoutName,     //Scouter Name
+            @Field("entry.499828888") String teamNum,       //Team Number
+            @Field("entry.1179559190") String autoLine,     //Did it cross the Auto-Line?
+            @Field("entry.1876919081") String autoHome,     //Did it put a cube in home switch during autonomous?
+            @Field("entry.1980565669") String autoOpponent, //Did it put a cube in opponent switch during autonomous?
+            @Field("entry.2107845895") String autoScale,    //Did it put a cube in the scale during autonomous?
+            @Field("entry.799149728") String telHome,       //Cubes in home during teleop
+            @Field("entry.721096757") String telOpponent,   //Cubes in opponent during teleop
+            @Field("entry.898469043") String telScale,      //Cubes in scale during teleop
+            @Field("entry.1297945363") String cubesDropped, //Number of cubes dropped
+            @Field("entry.2079952567") String penalties,    //Number of penalties
+            @Field("entry.652412432") String climbProcess   //Describe the climb process
     );
 }

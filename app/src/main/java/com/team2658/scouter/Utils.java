@@ -5,10 +5,14 @@ import android.widget.Toast;
 
 /**
  * Created by Gokul Swaminathan on 3/14/2018.
+ *
+ * This class holds all static methods that are going to be used lots of times.
+ *
  */
 
 public class Utils {
 
+    //basically show a toast message on android
     public static void showToast(String msg, int time, Context context)
     {
         CharSequence text = msg;
