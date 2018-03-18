@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 /**
  * Created by Gokul Swaminathan on 3/14/2018.
- * <p>
+ *
  * This class holds all static methods that are going to be used lots of times.
  */
 
@@ -31,8 +31,7 @@ public class Utils {
         }
     }
 
-    public static Intent webIntent(String url)
-    {
+    public static Intent webIntent(String url) {
         return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     }
 
