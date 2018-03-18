@@ -16,6 +16,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
+
+    configurations {
+        all {
+            exclude module: 'httpclient'
+            exclude module: 'commons-logging'
+        }
+    }
 }
 
 dependencies {
@@ -31,4 +41,7 @@ dependencies {
 
     //Library for Card View Layout
     compile 'com.android.support:cardview-v7:26.1.0'
+
+    //Intro Library (Proguard config not needed)
+    compile 'com.heinrichreimersoftware:material-intro:1.6.2'
 }

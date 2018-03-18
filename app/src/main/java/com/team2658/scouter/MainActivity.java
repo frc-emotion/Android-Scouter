@@ -1,6 +1,8 @@
 package com.team2658.scouter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -65,8 +67,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        onStartUp();
+
         //init stuff
         initUI();
+    }
+
+    private void onStartUp()
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isFirstRun = prefs.getBoolean("FIRSTRUN", true);
+        if (isFirstRun)
+        {
+            startActivity(new Intent(this, MainIntroActivity.class));
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("FIRSTRUN", false);
+            editor.commit();
+        }
     }
 
     private void initUI() {
