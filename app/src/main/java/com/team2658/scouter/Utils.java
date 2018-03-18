@@ -35,4 +35,8 @@ public class Utils {
         return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     }
 
+    public static Intent actIntent(Context context, Class<?> cls) {
+        return new Intent(context, cls);
+    }
+
 }

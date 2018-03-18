@@ -21,6 +21,8 @@
     <string name="about">About</string>
     <string name="open_csv">Open data file</string>
     <string name="csv_library">Opencsv Library</string>
+    <string name="libs">Open Source</string>
+    <string name="intro">Replay Intro</string>
 
     <string name="climb_hint">How did the climb go?</string>
     <string name="description__intro">An easy scouting app that saves the data to a csv file.</string>

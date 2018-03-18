@@ -7,7 +7,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -44,4 +44,7 @@ dependencies {
 
     //Intro Library (Proguard config not needed)
     compile 'com.heinrichreimersoftware:material-intro:1.6.2'
+
+    //Library Presenter
+    compile 'com.github.franmontiel:AttributionPresenter:1.0'
 }

@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boolean isFirstRun = prefs.getBoolean("FIRSTRUN", true);
         if (isFirstRun)
         {
-            startActivity(new Intent(this, MainIntroActivity.class));
+            startActivity(Utils.actIntent(this, MainActivity.class));
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("FIRSTRUN", false);
             editor.commit();
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         try {
             writeCSV(dataToSubmit);
-            Utils.showToast("Successfully saved as scouter_data.csv", Toast.LENGTH_SHORT, getApplicationContext());
+            Utils.showToast("Successfully saved", Toast.LENGTH_SHORT, getApplicationContext());
             clear();
         } catch (IOException e) {
             Utils.showToast("Could not write to .csv", Toast.LENGTH_SHORT, getApplicationContext());
