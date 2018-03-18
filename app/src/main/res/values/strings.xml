@@ -13,10 +13,14 @@
     <string name="cubesOpp">Enemy Switch</string>
     <string name="cubesScale">Scale</string>
     <string name="cubesDrop">Cubes Dropped</string>
-    <string name="pen">Penalties</string>
+    <string name="exchange">Exchange</string>
     <string name="viewClimb">Climb</string>
     <string name="submit">Submit</string>
     <string name="clear">Clear</string>
+    <string name="version">Version</string>
+    <string name="about">About</string>
+    <string name="open_csv">Open data file</string>
+    <string name="csv_library">Opencsv Library</string>
 
     <string name="climb_hint">How did the climb go?</string>
 

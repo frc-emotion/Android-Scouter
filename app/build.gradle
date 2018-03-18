@@ -26,8 +26,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    //Library to integrate with Google Forums
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
+    //Library to integrate with .csv files
+    compile 'com.opencsv:opencsv:4.0'
 
     //Library for Card View Layout
     compile 'com.android.support:cardview-v7:26.1.0'
