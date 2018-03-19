@@ -22,6 +22,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Created by Gokul Swaminathan on 3/14/2018.
+ *
+ * This class is the main class that runs the main page.
+ */
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //contains the titles for the csv file

@@ -9,6 +9,12 @@ import com.franmontiel.attributionpresenter.AttributionPresenter;
 import com.franmontiel.attributionpresenter.entities.Attribution;
 import com.franmontiel.attributionpresenter.entities.License;
 
+/**
+ * Created by Gokul Swaminathan on 3/18/2018.
+ *
+ * This class runs the about page.
+ */
+
 public class AboutActivity extends AppCompatActivity {
 
     TextView versionView;   //shows the version

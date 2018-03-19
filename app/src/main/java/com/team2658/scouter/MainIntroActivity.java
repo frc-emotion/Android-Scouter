@@ -8,7 +8,7 @@ import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 
 /**
  * Created by Gokul Swaminathan on 3/18/2018.
- * <p>
+ *
  * This class shows the intro at the startup of the app.
  */
 
