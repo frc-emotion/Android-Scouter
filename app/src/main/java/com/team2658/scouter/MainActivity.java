@@ -2,6 +2,7 @@ package com.team2658.scouter;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -279,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void writeCSV(String[] data) throws IOException {
-        String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+        String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
         String fileName = "scouter_data.csv";
         String filePath = baseDir + File.separator + fileName;
         File f = new File(filePath);
@@ -293,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // else create a file with the headers
         else {
             writer = new CSVWriter(new FileWriter(filePath));
-            writer.writeNext(HEADERS);
+            writer.writeNext(HEADERS);  //Write line by line (Array)
         }
 
         writer.writeNext(data);
