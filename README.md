@@ -7,14 +7,14 @@
 * Go [here](https://github.com/frc-emotion/Android-Scouter/releases) to download the apk file
 
 ## Data
-* Data is saved in a csv file in the root directory of the android phone as scouter_data.csv
+* Data is saved in a csv file in the root directory of the android phone as `scouter_data.csv`
 
 ## License
 Scouter is made under the terms of the [MIT License](https://opensource.org/licenses/MIT)
 ```
 MIT License
 
-Copyright (c) 2018 Team 2658
+Copyright (c) 2018 Gokul Swaminathan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
