@@ -7,7 +7,7 @@
 * Go [here](https://github.com/frc-emotion/Android-Scouter/releases) to download the apk file
 
 ## Data
-* Data is saved in a csv file in the root directory of the android phone as `scouter_data.csv`
+* Data is saved in a csv file in the downloads folder of the android phone as `scouter_data.csv`
 * Directory --> `/storage/emulated/0/Download/scouter_data.csv`
 
 ## License
