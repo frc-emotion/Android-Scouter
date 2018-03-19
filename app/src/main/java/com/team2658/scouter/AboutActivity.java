@@ -11,8 +11,8 @@ import com.franmontiel.attributionpresenter.entities.License;
 
 public class AboutActivity extends AppCompatActivity {
 
-    TextView versionView;
-    private final String APP_VERSION = "Version " + BuildConfig.VERSION_NAME;
+    TextView versionView;   //shows the version
+    private final String APP_VERSION = "Version " + BuildConfig.VERSION_NAME;   //contains Version + the version number
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,19 +22,22 @@ public class AboutActivity extends AppCompatActivity {
         initUI();
     }
 
-    private void initUI()
-    {
+    private void initUI() {
+        //initialize the textview
         versionView = (TextView) findViewById(R.id.text_version);
         versionView.setText(APP_VERSION);
     }
 
-    public void replayIntro(View v)
-    {
+    public void replayIntro(View v) {
+        //navigate to intro class (replay the intro)
         startActivity(Utils.actIntent(this, MainIntroActivity.class));
     }
 
-    public void showLibraries(View v)
-    {
+    public void showLibraries(View v) {
+
+        //Library builder
+        //Library title, copyright notice, license type, website url
+
         AttributionPresenter attributionPresenter = new AttributionPresenter.Builder(this)
                 .addAttributions(
                         new Attribution.Builder("AttributionPresenter")

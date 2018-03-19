@@ -23,6 +23,7 @@ public class Utils {
         toast.show();
     }
 
+    //converts answers of a checkbox to string
     public static String checkBoxToString(CheckBox check) {
         if (check.isChecked()) {
             return "Yes";
@@ -31,10 +32,12 @@ public class Utils {
         }
     }
 
+    //navigate to url
     public static Intent webIntent(String url) {
         return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     }
 
+    //navigate to other pages
     public static Intent actIntent(Context context, Class<?> cls) {
         return new Intent(context, cls);
     }

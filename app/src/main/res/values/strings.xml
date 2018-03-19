@@ -25,7 +25,7 @@
     <string name="intro">Replay Intro</string>
 
     <string name="climb_hint">How did the climb go?</string>
-    <string name="description__intro">An easy scouting app that saves the data to a csv file.</string>
+    <string name="description__intro">A simple scouting app that saves scouting data to a csv file.</string>
     <string name="title_permission_write">Access Storage</string>
     <string name="description__permission_write">We need to access your storage to create and read the csv file that contains the scouting data.</string>
 

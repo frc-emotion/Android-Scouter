@@ -24,6 +24,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //contains the titles for the csv file
     private final String[] HEADERS = {"Scouter Name", "Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
             "Autonomous cube on opponent switch?", "Autonomous cube on scale?",
             "Number of cubes on home switch?", "Number of cubes on opponent switch?",
@@ -32,15 +33,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText scouter;   //Scouter name
     private EditText teamNumber;    //Shows team number
-    private CheckBox autoLine;
-    private CheckBox autoHome;
-    private CheckBox autoOpp;
-    private CheckBox autoScale;
-    private TextView telNumHomeCubes;  //shows number of vubes in home during auto
-    private TextView telNumEnemySwitch;
-    private TextView telNumScale;
-    private TextView telNumDropped;
-    private TextView telNumExchange;
+    private CheckBox autoLine;  //checkbox for auto line
+    private CheckBox autoHome;  //checkbox for auto home switch
+    private CheckBox autoOpp;   //checkbox for auto enemy switch
+    private CheckBox autoScale; //checkbox for auto scale
+    private TextView telNumHomeCubes;  //shows number of cubes in home during tel
+    private TextView telNumEnemySwitch; //shows number of cubes in enemy switch during tel
+    private TextView telNumScale;   //shows number of cubes in scale during tel
+    private TextView telNumDropped; //shows number of cubes dropped during tel
+    private TextView telNumExchange;    //shows number of cubes in exchange during tel
     private Button inc1;    //increment buttons
     private Button dec1;    //decrement buttons
     private Button inc2;    //increment buttons
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button inc5;    //increment buttons
     private Button dec5;    //decrement
 
-    private Spinner climbSpin;
+    private Spinner climbSpin;  //spinner to explain climb process
 
     private int telHomeCubes = 0;  //counter of cubes in home during auto
     private int telOppCubes = 0;  //counter of cubes in home during auto
@@ -60,25 +61,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int telDropCubes = 0;  //counter of cubes in home during auto
     private int telEx = 0;  //counter of cubes in home during auto
 
-    private String spinnerChoice;
+    private String spinnerChoice;   //spinner selection made by user
 
     @Override   //Method that holds what to do once the page creates
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //stuff to do only on first install
         onStartUp();
 
         //init stuff
         initUI();
     }
 
-    private void onStartUp()
-    {
+    private void onStartUp() {
+        //only show material intro on first install of the app
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isFirstRun = prefs.getBoolean("FIRSTRUN", true);
-        if (isFirstRun)
-        {
+        if (isFirstRun) {
             startActivity(Utils.actIntent(this, MainActivity.class));
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("FIRSTRUN", false);
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initUI() {
+        //init all items
         scouter = (EditText) findViewById(R.id.editName);
 
         autoLine = (CheckBox) findViewById(R.id.autoLineCheck);
@@ -94,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         autoOpp = (CheckBox) findViewById(R.id.autoOppCheck);
         autoScale = (CheckBox) findViewById(R.id.autoScaleCheck);
 
-        teamNumber = (EditText) findViewById(R.id.editTeamNumber);  //init text edit for team number
-        telNumHomeCubes = (TextView) findViewById(R.id.integer_number_home);   //init text view for autonomous home cubes
+        teamNumber = (EditText) findViewById(R.id.editTeamNumber);
+        telNumHomeCubes = (TextView) findViewById(R.id.integer_number_home);
         telNumEnemySwitch = (TextView) findViewById(R.id.integer_number_opp);
         telNumScale = (TextView) findViewById(R.id.integer_number_scale);
         telNumDropped = (TextView) findViewById(R.id.integer_number_drop);
@@ -132,20 +134,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dec5.setOnClickListener(this);  //set the click listener for the method onClick
 
         climbSpin = (Spinner) findViewById(R.id.spinnerClimb);
+
+        //spinnerchoice becomes the selected on the spinner
         climbSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spinnerChoice = parent.getItemAtPosition(position).toString();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
+                //do nothing
             }
         });
     }
 
 
     public void submitData(View v) {
-        String scouterName = scouter.getText().toString();    //convert data to string
-        String teamNum = teamNumber.getText().toString();   //convert data in text edit to string
+        //convert all data to strings
+        String scouterName = scouter.getText().toString();
+        String teamNum = teamNumber.getText().toString();
         String autoLineS = Utils.checkBoxToString(autoLine);
         String autoHomeS = Utils.checkBoxToString(autoHome);
         String autoOppS = Utils.checkBoxToString(autoOpp);
@@ -157,9 +163,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String exchange = "" + telEx;
         String climb = "" + spinnerChoice;
 
+        //array of one team scouted
         String[] dataToSubmit = {scouterName, teamNum, autoLineS, autoHomeS, autoOppS, autoScaleS,
                 telHome, telOpp, telScale, telDropped, exchange, climb};
 
+        //write the data
         try {
             writeCSV(dataToSubmit);
             Utils.showToast("Successfully saved", Toast.LENGTH_SHORT, getApplicationContext());
@@ -202,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 telScaleCubes--;
                 showTextScaleCubes = true;
                 break;   //decrement
-
             case R.id.incCubesDrop:
                 telDropCubes++;
                 showTextDropCubes = true;
@@ -211,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 telDropCubes--;
                 showTextDropCubes = true;
                 break;   //decrement
-
             case R.id.incEx:
                 telEx++;
                 showTextEx = true;
@@ -242,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void clear() {
+        //clear/reset all data entries
         scouter.setText("");
         teamNumber.setText("");
         autoLine.setChecked(false);
@@ -257,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateCounters() {
+        //update counters after reset
         telNumHomeCubes.setText("" + telHomeCubes);
         telNumEnemySwitch.setText("" + telOppCubes);
         telNumScale.setText("" + telScaleCubes);
@@ -271,22 +279,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         File f = new File(filePath);
         CSVWriter writer;
 
-        // File exist
+        // if file exists
         if (f.exists() && !f.isDirectory()) {
             FileWriter mFileWriter = new FileWriter(filePath, true);
             writer = new CSVWriter(mFileWriter);
-        } else {
+        }
+        // else create a file with the headers
+        else {
             writer = new CSVWriter(new FileWriter(filePath));
             writer.writeNext(HEADERS);
         }
 
         writer.writeNext(data);
-
         writer.close();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //display the menu when clicked
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
@@ -294,8 +304,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_about:
-                Intent aboutIntent = new Intent(this,AboutActivity.class);
+            case R.id.action_about: //open about page when about menu is clicked
+                Intent aboutIntent = new Intent(this, AboutActivity.class);
                 startActivity(aboutIntent);
                 return true;
             default:
