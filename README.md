@@ -8,7 +8,7 @@
 
 ## Data
 * Data is saved in a csv file in the root directory of the android phone as `scouter_data.csv`
-* Directory --> `/storage/emulated/0/scouter_data.csv`
+* Directory --> `/storage/emulated/0/Download/scouter_data.csv`
 
 ## License
 Scouter is made under the terms of the [MIT License](https://opensource.org/licenses/MIT)
