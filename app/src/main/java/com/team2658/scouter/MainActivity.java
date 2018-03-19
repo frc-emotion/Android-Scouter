@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isFirstRun = prefs.getBoolean("FIRSTRUN", true);
         if (isFirstRun) {
-            startActivity(Utils.actIntent(this, MainActivity.class));
+            startActivity(Utils.actIntent(this, MainIntroActivity.class));
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("FIRSTRUN", false);
             editor.commit();
