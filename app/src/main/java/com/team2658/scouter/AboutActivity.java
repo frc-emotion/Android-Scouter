@@ -11,14 +11,15 @@ import com.franmontiel.attributionpresenter.entities.License;
 
 /**
  * Created by Gokul Swaminathan on 3/18/2018.
- *
+ * <p>
  * This class runs the about page.
  */
 
 public class AboutActivity extends AppCompatActivity {
 
     TextView versionView;   //shows the version
-    private final String APP_VERSION = "Version " + BuildConfig.VERSION_NAME;   //contains Version + the version number
+    private final String APP_VERSION_RELEASE = "Version " + BuildConfig.VERSION_NAME;   //contains Version + the version number
+    private final String APP_VERSION_DEBUG = "Version " + BuildConfig.VERSION_NAME + "-debug";   //contains Version + the version number + debug
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,14 @@ public class AboutActivity extends AppCompatActivity {
     private void initUI() {
         //initialize the textview
         versionView = (TextView) findViewById(R.id.text_version);
-        versionView.setText(APP_VERSION);
+
+        // check if app is debug
+        if (BuildConfig.DEBUG) {
+            versionView.setText(APP_VERSION_DEBUG);
+        } else    //if app is release
+        {
+            versionView.setText(APP_VERSION_RELEASE);
+        }
     }
 
     public void replayIntro(View v) {

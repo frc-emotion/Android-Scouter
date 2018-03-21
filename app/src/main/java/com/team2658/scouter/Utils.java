@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 /**
  * Created by Gokul Swaminathan on 3/14/2018.
  *
@@ -42,4 +44,9 @@ public class Utils {
         return new Intent(context, cls);
     }
 
+    //merge two arrays to one
+    public static String[] mergeArrays(String[] first, String[] last)
+    {
+        return ArrayUtils.addAll(first, last);
+    }
 }

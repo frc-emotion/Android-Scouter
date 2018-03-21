@@ -23,6 +23,7 @@
     <string name="csv_library">Opencsv Library</string>
     <string name="libs">Open Source</string>
     <string name="intro">Replay Intro</string>
+    <string name="view">View Data</string>
 
     <string name="climb_hint">How did the climb go?</string>
     <string name="description__intro">A simple scouting app that saves scouting data to a csv file.</string>

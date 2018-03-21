@@ -32,7 +32,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //contains the titles for the csv file
-    private final String[] HEADERS = {"Scouter Name", "Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
+    private final String[] HEADERS = {"Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
             "Autonomous cube on opponent switch?", "Autonomous cube on scale?",
             "Number of cubes on home switch?", "Number of cubes on opponent switch?",
             "Number of cubes on scale?", "Number of cubes dropped?", "Number of cubes in exchange?",
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void submitData(View v) {
         //convert all data to strings
-        String scouterName = scouter.getText().toString();
+        String scouterName = scouter.getText().toString();  //took this out of the data file, still have to take out all code for it
         String teamNum = teamNumber.getText().toString();
         String autoLineS = Utils.checkBoxToString(autoLine);
         String autoHomeS = Utils.checkBoxToString(autoHome);
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String climb = "" + spinnerChoice;
 
         //array of one team scouted
-        String[] dataToSubmit = {scouterName, teamNum, autoLineS, autoHomeS, autoOppS, autoScaleS,
+        String[] dataToSubmit = {teamNum, autoLineS, autoHomeS, autoOppS, autoScaleS,
                 telHome, telOpp, telScale, telDropped, exchange, climb};
 
         //write the data
@@ -284,6 +284,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String fileName = "scouter_data.csv";
         String filePath = baseDir + File.separator + fileName;
         File f = new File(filePath);
+
+        //csv writer object
         CSVWriter writer;
 
         // if file exists
@@ -314,6 +316,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.action_about: //open about page when about menu is clicked
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
                 startActivity(aboutIntent);
+                return true;
+            case R.id.action_view: //open view page when about menu is clicked
+                Intent viewIntent = new Intent(this, DataViewActivity.class);
+                startActivity(viewIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
