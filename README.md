@@ -1,7 +1,7 @@
 #  ![Scouter](https://github.com/frc-emotion/Android-Scouter/blob/master/app/src/main/res/mipmap-mdpi/ic_launcher.png "Scouter") Android-Scouter
 
 * Scouter is a simple scouting app that saves all info into a [csv](https://en.wikipedia.org/wiki/Comma-separated_values) file
-* Project still needs more commenting
+* Please fork and create a pull request if you want to help
 
 ## Download
 * Go [here](https://github.com/frc-emotion/Android-Scouter/releases) to download the apk file
