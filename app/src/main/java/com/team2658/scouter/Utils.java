@@ -49,4 +49,15 @@ public class Utils {
     {
         return ArrayUtils.addAll(first, last);
     }
+
+    //create an email
+    public static Intent emailIntent(String emailAddress, String subject, String text, String title)
+    {
+        Intent email = new Intent(Intent.ACTION_SEND);
+        email.setType("text/email");
+        email.putExtra(Intent.EXTRA_EMAIL, new String[] { emailAddress });
+        email.putExtra(Intent.EXTRA_SUBJECT, subject);
+        email.putExtra(Intent.EXTRA_TEXT, text);
+        return Intent.createChooser(email, title);
+    }
 }

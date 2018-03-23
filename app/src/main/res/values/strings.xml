@@ -25,6 +25,10 @@
     <string name="intro">Replay Intro</string>
     <string name="view">View Data</string>
 
+    <string name="git">Github</string>
+    <string name="email">Email Developer</string>
+
+
     <string name="climb_hint">How did the climb go?</string>
     <string name="description__intro">A simple scouting app that saves scouting data to a csv file.</string>
     <string name="title_permission_write">Access Storage</string>

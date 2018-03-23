@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.franmontiel.attributionpresenter.AttributionPresenter;
 import com.franmontiel.attributionpresenter.entities.Attribution;
 import com.franmontiel.attributionpresenter.entities.License;
@@ -96,9 +97,26 @@ public class AboutActivity extends AppCompatActivity {
                                 .setWebsite("https://developer.android.com/reference/android/support/v7/widget/CardView.html")
                                 .build()
                 )
+                .addAttributions(
+                        new Attribution.Builder("Material Ripple Layout")
+                                .addCopyrightNotice("Copyright 2015 Balys Valentukevicius")
+                                .addLicense(License.APACHE)
+                                .setWebsite("https://github.com/balysv/material-ripple")
+                                .build()
+                )
                 .build();
 
         //show license dialogue
         attributionPresenter.showDialog("Open Source Libraries");
+    }
+
+    public void emailDev(View v)
+    {
+        startActivity(Utils.emailIntent("gsnathandev@outlook.com", "Android-Scouter", APP_VERSION_RELEASE, "Send email..."));
+    }
+
+    public void navToGit(View v)
+    {
+        startActivity(Utils.webIntent("https://github.com/frc-emotion/Android-Scouter"));
     }
 }
