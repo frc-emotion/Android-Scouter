@@ -104,6 +104,13 @@ public class AboutActivity extends AppCompatActivity {
                                 .setWebsite("https://github.com/balysv/material-ripple")
                                 .build()
                 )
+                .addAttributions(
+                        new Attribution.Builder("Apache POI")
+                                .addCopyrightNotice("Copyright 2002-2017 The Apache Software Foundation")
+                                .addLicense(License.APACHE)
+                                .setWebsite("https://poi.apache.org/index.html")
+                                .build()
+                )
                 .build();
 
         //show license dialogue

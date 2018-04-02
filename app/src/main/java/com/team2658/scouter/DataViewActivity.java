@@ -31,7 +31,7 @@ public class DataViewActivity extends AppCompatActivity {
 
         //force landscape
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        Utils.showToast("Data can only be shown in landscape", Toast.LENGTH_LONG, getApplicationContext());
+        Utils.showToast("Data can only be shown in landscape", Toast.LENGTH_SHORT, getApplicationContext());
 
         //try to load the data of file to array
         try {

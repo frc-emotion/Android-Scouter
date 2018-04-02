@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="yellowPrim">#f4e133</color>
     <color name="yellowDark">#dbca2e</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
