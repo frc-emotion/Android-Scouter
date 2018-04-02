@@ -9,6 +9,8 @@
 ## Data
 * Data is saved in a csv file in the downloads folder of the android phone as `scouter_data.csv`
 * Directory --> `/storage/emulated/0/Download/scouter_data.csv`
+* Exported data is saved in a xls file in the downloads folder of the android phone as `scouter_data_excel.xls`
+* Directory --> `/storage/emulated/0/Download/scouter_data_excel.xls`
 
 ## License
 Scouter is made under the terms of the [MIT License](https://opensource.org/licenses/MIT)
