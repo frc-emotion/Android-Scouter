@@ -24,6 +24,8 @@
     <string name="libs">Open Source</string>
     <string name="intro">Replay Intro</string>
     <string name="view">View Data</string>
+    <string name="export">Export</string>
+    <string name="clearFile">Erase</string>
 
     <string name="git">Github</string>
     <string name="email">Email Developer</string>

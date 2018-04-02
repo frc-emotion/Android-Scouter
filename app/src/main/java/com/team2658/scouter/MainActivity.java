@@ -23,13 +23,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 /**
  * Created by Gokul Swaminathan on 3/14/2018.
- *
+ * <p>
  * This class is the main class that runs the main page.
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private final String CSV_FILE = "scouter_data.csv";
+    private final String EXCEL_FILE = "scouter_data_excel.xls";
 
     //contains the titles for the csv file
     private final String[] HEADERS = {"Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
@@ -281,8 +285,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void writeCSV(String[] data) throws IOException {
         String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
-        String fileName = "scouter_data.csv";
-        String filePath = baseDir + File.separator + fileName;
+        String filePath = baseDir + File.separator + CSV_FILE;
         File f = new File(filePath);
 
         //csv writer object
@@ -301,6 +304,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         writer.writeNext(data);
         writer.close();
+    }
+
+    //method to empty the file, incase if messup. This method is the on click for the button.
+    public void clearFile(View v) {
+        try {
+            clearCsv();
+            Utils.showToast("Clear successful", Toast.LENGTH_LONG, getApplicationContext());
+        } catch (IOException e) {
+            Utils.showToast("Clear failed", Toast.LENGTH_LONG, getApplicationContext());
+        }
+    }
+
+    //this is the implementation of method above^
+    private void clearCsv() throws IOException {
+        String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
+        String filePath = baseDir + File.separator + CSV_FILE;
+        File f = new File(filePath);
+
+        //csv writer object
+        CSVWriter writer;
+
+        writer = new CSVWriter(new FileWriter(filePath));
+        writer.writeNext(HEADERS);  //Write line by line (Array)
+        writer.close();
+    }
+
+    //this method is the onclick of the export method below
+    public void exportExcel(View v) {
+        try {
+            String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
+            String filePath = baseDir + File.separator + CSV_FILE;
+            saveExcel(filePath);
+            Utils.showToast("Export Success", Toast.LENGTH_LONG, getApplicationContext());
+        } catch (IOException e) {
+            Utils.showToast("Export failed", Toast.LENGTH_LONG, getApplicationContext());
+        }
+    }
+
+    //this method exports the .csv to .xls. It will overwrite any existing xls files.
+    private void saveExcel(String csvFilePath) throws IOException {
+        String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
+        String excelFilePath = baseDir + File.separator + EXCEL_FILE;
+
+        //converter object
+        Converter convert = new Converter(csvFilePath, excelFilePath);
+        convert.convertCsvToExcel();
     }
 
     @Override

@@ -45,6 +45,7 @@
                         android:background="@android:color/transparent"
                         android:ems="10"
                         android:hint="@string/editName"
+                        android:visibility="gone"
                         android:inputType="textNoSuggestions"
                         android:textAlignment="textStart" />
 
@@ -423,7 +424,8 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -448,6 +450,32 @@
                         android:layout_marginStart="15dp"
                         android:onClick="clearData"
                         android:text="@string/clear" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_export"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:onClick="exportExcel"
+                        android:text="@string/export" />
+
+                    <Button
+                        android:id="@+id/button_clearCsv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:onClick="clearFile"
+                        android:text="@string/clearFile" />
 
                 </LinearLayout>
             </LinearLayout>
