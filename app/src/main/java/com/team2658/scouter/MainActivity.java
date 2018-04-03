@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.opencsv.CSVWriter;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -201,7 +203,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showTextHomeCubes = true;
                 break;   //increment
             case R.id.decCubesHome:
-                telHomeCubes--;
+                if (telHomeCubes > 0)
+                    telHomeCubes--;
                 showTextHomeCubes = true;
                 break;   //decrement
             case R.id.incCubesOpp:
@@ -209,7 +212,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showTextOppCubes = true;
                 break;   //increment
             case R.id.decCubesOpp:
-                telOppCubes--;
+                if (telOppCubes > 0)
+                    telOppCubes--;
                 showTextOppCubes = true;
                 break;   //decrement
 
@@ -218,7 +222,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showTextScaleCubes = true;
                 break;   //increment
             case R.id.decCubesScale:
-                telScaleCubes--;
+                if (telScaleCubes > 0)
+                    telScaleCubes--;
                 showTextScaleCubes = true;
                 break;   //decrement
             case R.id.incCubesDrop:
@@ -226,7 +231,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showTextDropCubes = true;
                 break;   //increment
             case R.id.decCubesDrop:
-                telDropCubes--;
+                if (telDropCubes > 0)
+                    telDropCubes--;
                 showTextDropCubes = true;
                 break;   //decrement
             case R.id.incEx:
@@ -234,24 +240,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showTextEx = true;
                 break;   //increment
             case R.id.decEx:
-                telEx--;
+                if (telEx > 0)
+                    telEx--;
                 showTextEx = true;
                 break;   //decrement
         }
         if (showTextHomeCubes)
-            telNumHomeCubes.setText("" + telHomeCubes);   //refresh view
+            telNumHomeCubes.setText("" + telHomeCubes);     //refresh view
 
         if (showTextOppCubes)
-            telNumEnemySwitch.setText("" + telOppCubes);   //refresh view
+            telNumEnemySwitch.setText("" + telOppCubes);    //refresh view
 
         if (showTextScaleCubes)
-            telNumScale.setText("" + telScaleCubes);   //refresh view
+            telNumScale.setText("" + telScaleCubes);    //refresh view
 
         if (showTextDropCubes)
             telNumDropped.setText("" + telDropCubes);   //refresh view
 
         if (showTextEx)
-            telNumExchange.setText("" + telEx);   //refresh view
+            telNumExchange.setText("" + telEx);     //refresh view
     }
 
     public void clearData(View V) {
