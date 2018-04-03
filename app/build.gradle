@@ -7,7 +7,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
-        versionName "1.6"
+        versionName "1.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -37,24 +37,24 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     //Library to integrate with .csv files
-    compile 'com.opencsv:opencsv:4.0'
+    implementation 'com.opencsv:opencsv:4.0'
 
     //Library for Card View Layout
-    compile 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
 
     //Intro Library (Proguard config not needed)
-    compile 'com.heinrichreimersoftware:material-intro:1.6.2'
+    implementation 'com.heinrichreimersoftware:material-intro:1.6.2'
 
     //Library Presenter
-    compile 'com.github.franmontiel:AttributionPresenter:1.0'
+    implementation 'com.github.franmontiel:AttributionPresenter:1.0'
 
     //Ripple Effect Library
-    compile 'com.balysv:material-ripple:1.0.2'
+    implementation 'com.balysv:material-ripple:1.0.2'
 
     //Button Library
-    compile 'me.spark:submitbutton:1.0.1'
+    implementation 'me.spark:submitbutton:1.0.1'
 
     //Excel Library
-    compile files('libs/poi-3.17')
+    implementation files('libs/poi-3.17')
     implementation files('libs/poi-3.17.jar')
 }
