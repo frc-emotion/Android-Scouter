@@ -2,7 +2,7 @@
 
 * Scouter is a simple scouting app that saves all info into a [csv](https://en.wikipedia.org/wiki/Comma-separated_values) file
 * Please fork and create a pull request if you want to help
-* The Apach POI Library was used in this project, so in order to build successfully, you must download the library and import it to your IDE from [here](https://poi.apache.org/download.html).
+* The Apache POI Library was used in this project, so in order to build successfully, you must download the library and import it to your IDE from [here](https://poi.apache.org/download.html).
 
 ## Download
 * Go [here](https://github.com/frc-emotion/Android-Scouter/releases) to download the apk file
