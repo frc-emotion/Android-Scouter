@@ -111,6 +111,13 @@ public class AboutActivity extends AppCompatActivity {
                                 .setWebsite("https://poi.apache.org/index.html")
                                 .build()
                 )
+                .addAttributions(
+                        new Attribution.Builder("LegacyTableView")
+                                .addCopyrightNotice("Copyright Copyright 2018 Levit Nudi")
+                                .addLicense(License.APACHE)
+                                .setWebsite("https://github.com/levitnudi/LegacyTableView")
+                                .build()
+                )
                 .build();
 
         //show license dialogue

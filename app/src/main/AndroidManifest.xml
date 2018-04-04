@@ -39,15 +39,18 @@
             android:name=".MainIntroActivity"
             android:theme="@style/Theme.Intro" />
 
-        <activity android:name=".DataViewActivity"
+        <!-- Data View -->
+        <activity
+            android:name=".ExcelViewActivity"
             android:label="@string/view"
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".ExcelViewActivity" />
         </activity>
+
     </application>
 
 </manifest>

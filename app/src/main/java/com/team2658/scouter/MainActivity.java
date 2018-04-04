@@ -39,8 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //contains the titles for the csv file
     private final String[] HEADERS = {"Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
-            "Autonomous cube on opponent switch?", "Autonomous cube on scale?",
-            "Number of cubes on home switch?", "Number of cubes on opponent switch?",
+            "Autonomous cube on scale?", "Number of cubes on home switch?", "Number of cubes on opponent switch?",
             "Number of cubes on scale?", "Number of cubes dropped?", "Number of cubes in exchange?",
             "Climb process?"};
 
@@ -167,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String teamNum = teamNumber.getText().toString();
         String autoLineS = Utils.checkBoxToString(autoLine);
         String autoHomeS = Utils.checkBoxToString(autoHome);
-        String autoOppS = Utils.checkBoxToString(autoOpp);
+        //String autoOppS = Utils.checkBoxToString(autoOpp);
         String autoScaleS = Utils.checkBoxToString(autoScale);
         String telHome = "" + telHomeCubes;
         String telOpp = "" + telOppCubes;
@@ -177,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String climb = "" + spinnerChoice;
 
         //array of one team scouted
-        String[] dataToSubmit = {teamNum, autoLineS, autoHomeS, autoOppS, autoScaleS,
+        String[] dataToSubmit = {teamNum, autoLineS, autoHomeS, autoScaleS,
                 telHome, telOpp, telScale, telDropped, exchange, climb};
 
         //write the data
@@ -374,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(aboutIntent);
                 return true;
             case R.id.action_view: //open view page when about menu is clicked
-                Intent viewIntent = new Intent(this, DataViewActivity.class);
+                Intent viewIntent = new Intent(this, ExcelViewActivity.class);
                 startActivity(viewIntent);
                 return true;
             default:
