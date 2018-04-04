@@ -7,7 +7,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
-        versionName "1.7"
+        versionName "1.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -57,4 +57,7 @@ dependencies {
     //Excel Library
     implementation files('libs/poi-3.17')
     implementation files('libs/poi-3.17.jar')
+
+    //Data Viewer Library
+    implementation 'com.github.levitnudi:LegacyTableView:1.2'
 }
