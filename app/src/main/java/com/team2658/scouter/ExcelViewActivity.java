@@ -22,7 +22,7 @@ public class ExcelViewActivity extends AppCompatActivity {
             "Autonomous cube on scale?",
             "Number of cubes on home switch?", "Number of cubes on opponent switch?",
             "Number of cubes on scale?", "Number of cubes dropped?", "Number of cubes in exchange?",
-            "Climb process?"};
+            "Climb process?", "Notes"};
 
     private String[] data = {}; //array that holds all the data
 

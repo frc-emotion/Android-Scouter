@@ -26,6 +26,8 @@
     <string name="view">View Data</string>
     <string name="export">Export</string>
     <string name="clearFile">Erase</string>
+    <string name="viewNotes">Notes</string>
+    <string name="editNotes">Type your notes here</string>
 
     <string name="git">Github</string>
     <string name="email">Email Developer</string>

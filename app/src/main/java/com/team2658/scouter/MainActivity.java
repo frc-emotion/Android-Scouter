@@ -41,10 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String[] HEADERS = {"Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
             "Autonomous cube on scale?", "Number of cubes on home switch?", "Number of cubes on opponent switch?",
             "Number of cubes on scale?", "Number of cubes dropped?", "Number of cubes in exchange?",
-            "Climb process?"};
+            "Climb process?", "Notes"};
 
     private EditText scouter;   //Scouter name
     private EditText teamNumber;    //Shows team number
+    private EditText notesBlock;    //Notes block
     private CheckBox autoLine;  //checkbox for auto line
     private CheckBox autoHome;  //checkbox for auto home switch
     private CheckBox autoOpp;   //checkbox for auto enemy switch
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         autoScale = (CheckBox) findViewById(R.id.autoScaleCheck);
 
         teamNumber = (EditText) findViewById(R.id.editTeamNumber);
+        notesBlock = (EditText) findViewById(R.id.editNotes);
         telNumHomeCubes = (TextView) findViewById(R.id.integer_number_home);
         telNumEnemySwitch = (TextView) findViewById(R.id.integer_number_opp);
         telNumScale = (TextView) findViewById(R.id.integer_number_scale);
@@ -174,10 +176,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String telDropped = "" + telDropCubes;
         String exchange = "" + telEx;
         String climb = "" + spinnerChoice;
+        String notes = notesBlock.getText().toString();
+
+        if (notes.isEmpty()) {
+            notes = "No notes";
+        }
 
         //array of one team scouted
         String[] dataToSubmit = {teamNum, autoLineS, autoHomeS, autoScaleS,
-                telHome, telOpp, telScale, telDropped, exchange, climb};
+                telHome, telOpp, telScale, telDropped, exchange, climb, notes};
 
         //write the data
         try {
