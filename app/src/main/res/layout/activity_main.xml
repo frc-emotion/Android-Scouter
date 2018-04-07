@@ -537,7 +537,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:onClick="clearFile"
-                            android:text="@string/clearFile" />
+                            android:text="@string/clearFile"/>
 
                     </LinearLayout>
 

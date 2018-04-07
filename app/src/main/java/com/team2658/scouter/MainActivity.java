@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button inc5;    //increment buttons
     private Button dec5;    //decrement
 
+    private Button nuke;
+
     private Spinner climbSpin;  //spinner to explain climb process
 
     private int telHomeCubes = 0;  //counter of cubes in home during auto
@@ -147,6 +149,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dec5 = (Button) findViewById(R.id.decEx);    //init decrement button
         dec5.setOnClickListener(this);  //set the click listener for the method onClick
 
+        nuke = (Button) findViewById(R.id.button_clearCsv);
+        nuke.setEnabled(false);
+
         climbSpin = (Spinner) findViewById(R.id.spinnerClimb);
 
         //spinnerchoice becomes the selected on the spinner
@@ -161,11 +166,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
     public void submitData(View v) {
         //convert all data to strings
         String scouterName = scouter.getText().toString();  //took this out of the data file, still have to take out all code for it
         String teamNum = teamNumber.getText().toString();
+
+        if (teamNum.isEmpty()) {
+            teamNum = "0000";
+        }
+
         String autoLineS = Utils.checkBoxToString(autoLine);
         String autoHomeS = Utils.checkBoxToString(autoHome);
         //String autoOppS = Utils.checkBoxToString(autoOpp);
@@ -341,6 +350,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         writer = new CSVWriter(new FileWriter(filePath));
         writer.writeNext(HEADERS);  //Write line by line (Array)
         writer.close();
+        nuke.setEnabled(false);
     }
 
     //this method is the onclick of the export method below
@@ -350,6 +360,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String filePath = baseDir + File.separator + CSV_FILE;
             saveExcel(filePath);
             Utils.showToast("Export Success", Toast.LENGTH_LONG, getApplicationContext());
+            nuke.setEnabled(true);
         } catch (IOException e) {
             Utils.showToast("Export failed", Toast.LENGTH_LONG, getApplicationContext());
         }
