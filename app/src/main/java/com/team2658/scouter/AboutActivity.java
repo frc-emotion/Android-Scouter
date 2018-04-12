@@ -113,9 +113,16 @@ public class AboutActivity extends AppCompatActivity {
                 )
                 .addAttributions(
                         new Attribution.Builder("LegacyTableView")
-                                .addCopyrightNotice("Copyright Copyright 2018 Levit Nudi")
+                                .addCopyrightNotice("Copyright 2018 Levit Nudi")
                                 .addLicense(License.APACHE)
                                 .setWebsite("https://github.com/levitnudi/LegacyTableView")
+                                .build()
+                )
+                .addAttributions(
+                        new Attribution.Builder("Material Design Icons")
+                                .addCopyrightNotice("Copyright 2014 Austin Andrews")
+                                .addLicense("SIL OPEN FONT LICENSE Version 1.1", "http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL")
+                                .setWebsite("https://github.com/Templarian/MaterialDesign")
                                 .build()
                 )
                 .build();
@@ -124,13 +131,11 @@ public class AboutActivity extends AppCompatActivity {
         attributionPresenter.showDialog("Open Source Libraries");
     }
 
-    public void emailDev(View v)
-    {
-        startActivity(Utils.emailIntent("gsnathandev@outlook.com", "Android-Scouter", APP_VERSION_RELEASE, "Send email..."));
+    public void emailDev(View v) {
+        startActivity(Utils.emailIntent("gsnathandev@outlook.com", "Android-Scouter", APP_VERSION_RELEASE));
     }
 
-    public void navToGit(View v)
-    {
+    public void navToGit(View v) {
         startActivity(Utils.webIntent("https://github.com/frc-emotion/Android-Scouter"));
     }
 }
