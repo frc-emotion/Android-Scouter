@@ -3,9 +3,11 @@ package com.team2658.scouter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +21,14 @@ import android.widget.Toast;
 
 import com.opencsv.CSVWriter;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 
 /**
@@ -77,6 +82,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int telEx = 0;  //counter of cubes in home during auto
 
     private String spinnerChoice;   //spinner selection made by user
+
+    private String baseDir = android.os.Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS).toString();
+    private DateFormat df = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm z");
+    private String date = df.format(Calendar.getInstance().getTime());
 
     @Override   //Method that holds what to do once the page creates
     protected void onCreate(Bundle savedInstanceState) {
@@ -306,7 +315,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void writeCSV(String[] data) throws IOException {
-        String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
         String filePath = baseDir + File.separator + CSV_FILE;
         File f = new File(filePath);
 
@@ -340,7 +348,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //this is the implementation of method above^
     private void clearCsv() throws IOException {
-        String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
         String filePath = baseDir + File.separator + CSV_FILE;
         File f = new File(filePath);
 
@@ -356,7 +363,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //this method is the onclick of the export method below
     public void exportExcel(View v) {
         try {
-            String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
             String filePath = baseDir + File.separator + CSV_FILE;
             saveExcel(filePath);
             Utils.showToast("Export Success", Toast.LENGTH_LONG, getApplicationContext());
@@ -368,7 +374,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //this method exports the .csv to .xls. It will overwrite any existing xls files.
     private void saveExcel(String csvFilePath) throws IOException {
-        String baseDir = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();  //Downloads folder directory
         String excelFilePath = baseDir + File.separator + EXCEL_FILE;
 
         //converter object
@@ -394,9 +399,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent viewIntent = new Intent(this, ExcelViewActivity.class);
                 startActivity(viewIntent);
                 return true;
+            case R.id.action_share: //shares excel file with scout leader
+                try {
+                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();    //strictmode policies
+                    StrictMode.setVmPolicy(builder.build());
+                    File attachment = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS), EXCEL_FILE);
+                    Intent emailIntent = Utils.emailIntent("gokulswamilive@gmail.com", "Scouting Data", date, attachment);
+                    startActivity(emailIntent);
+                } catch (Exception e) {
+                    Utils.showToast("Error, could not send email", Toast.LENGTH_SHORT, getApplicationContext());
+                }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

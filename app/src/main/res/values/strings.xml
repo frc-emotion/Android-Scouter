@@ -28,16 +28,13 @@
     <string name="clearFile">Erase</string>
     <string name="viewNotes">Notes</string>
     <string name="editNotes">Type your notes here</string>
-
+    <string name="share">Email Data</string>
     <string name="git">Github</string>
     <string name="email">Email Developer</string>
-
-
     <string name="climb_hint">How did the climb go?</string>
     <string name="description__intro">A simple scouting app that saves scouting data to a csv file.</string>
     <string name="title_permission_write">Access Storage</string>
     <string name="description__permission_write">We need to access your storage to create and read the csv file that contains the scouting data.</string>
-
     <string-array name="climb_options">
         <item>Climbed</item>
         <item>Climbed with 1 extra</item>

@@ -3,14 +3,17 @@ package com.team2658.scouter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.io.File;
+
 /**
  * Created by Gokul Swaminathan on 3/14/2018.
- *
+ * <p>
  * This class holds all static methods that are going to be used lots of times.
  */
 
@@ -45,19 +48,29 @@ public class Utils {
     }
 
     //merge two arrays to one
-    public static String[] mergeArrays(String[] first, String[] last)
-    {
+    public static String[] mergeArrays(String[] first, String[] last) {
         return ArrayUtils.addAll(first, last);
     }
 
     //create an email
-    public static Intent emailIntent(String emailAddress, String subject, String text, String title)
-    {
+    public static Intent emailIntent(String emailAddress, String subject, String text) {
         Intent email = new Intent(Intent.ACTION_SEND);
         email.setType("text/email");
-        email.putExtra(Intent.EXTRA_EMAIL, new String[] { emailAddress });
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{emailAddress});
         email.putExtra(Intent.EXTRA_SUBJECT, subject);
         email.putExtra(Intent.EXTRA_TEXT, text);
-        return Intent.createChooser(email, title);
+        return Intent.createChooser(email, "Send email...");
+    }
+
+    //create an email with an attachment
+    public static Intent emailIntent(String emailAddress, String subject, String text, File file) {
+        Uri path = Uri.fromFile(file);
+        Intent email = new Intent(Intent.ACTION_SEND);
+        email.setType("text/email");
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{emailAddress});
+        email.putExtra(Intent.EXTRA_SUBJECT, subject);
+        email.putExtra(Intent.EXTRA_TEXT, text);
+        email.putExtra(Intent.EXTRA_STREAM, path);
+        return Intent.createChooser(email, "Send email...");
     }
 }
