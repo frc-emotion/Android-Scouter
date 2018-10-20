@@ -34,11 +34,6 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <!-- Intro -->
-        <activity
-            android:name=".MainIntroActivity"
-            android:theme="@style/Theme.Intro" />
-
         <!-- Data View -->
         <activity
             android:name=".ExcelViewActivity"

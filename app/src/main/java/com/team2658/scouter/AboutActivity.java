@@ -1,11 +1,10 @@
 package com.team2658.scouter;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.balysv.materialripple.MaterialRippleLayout;
 import com.franmontiel.attributionpresenter.AttributionPresenter;
 import com.franmontiel.attributionpresenter.entities.Attribution;
 import com.franmontiel.attributionpresenter.entities.License;
@@ -41,11 +40,6 @@ public class AboutActivity extends AppCompatActivity {
         {
             versionView.setText(APP_VERSION_RELEASE);
         }
-    }
-
-    public void replayIntro(View v) {
-        //navigate to intro class (replay the intro)
-        startActivity(Utils.actIntent(this, MainIntroActivity.class));
     }
 
     public void showLibraries(View v) {

@@ -1,11 +1,14 @@
 package com.team2658.scouter;
 
+import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.StrictMode;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.PermissionChecker;
+
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -93,23 +96,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //stuff to do only on first install
-        onStartUp();
+        checkPermissions();
 
         //init stuff
         initUI();
     }
 
-    private void onStartUp() {
-        //only show material intro on first install of the app
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isFirstRun = prefs.getBoolean("FIRSTRUN", true);
-        if (isFirstRun) {
-            startActivity(Utils.actIntent(this, MainIntroActivity.class));
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("FIRSTRUN", false);
-            editor.commit();
+    private void checkPermissions() {
+        int permission1 = PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permission2 = PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission1 == PermissionChecker.PERMISSION_GRANTED || permission2 == PermissionChecker.PERMISSION_GRANTED) {
+            //good to go
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    1);
         }
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay!
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Utils.showToast("Permission denied to access your files", Toast.LENGTH_LONG, this);
+                }
+                return;
+            }
+        }
+    }
+
 
     private void initUI() {
         //init all items
@@ -366,7 +388,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String filePath = baseDir + File.separator + CSV_FILE;
             saveExcel(filePath);
             Utils.showToast("Export Success", Toast.LENGTH_LONG, getApplicationContext());
-            nuke.setEnabled(true);
         } catch (IOException e) {
             Utils.showToast("Export failed", Toast.LENGTH_LONG, getApplicationContext());
         }
