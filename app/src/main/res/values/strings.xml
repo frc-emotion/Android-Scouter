@@ -1,19 +1,16 @@
 <resources>
     <string name="app_name">Scouter</string>
     <string name="viewInfo">Info</string>
-    <string name="editName">Scouter Name</string>
+    <string name="mech_hatch">Hatch Mechanism</string>
+    <string name="mech_cargo">Cargo Mechanism</string>
+    <string name="mech_lift">Lift Mechanism</string>
     <string name="editTeam">Team Name</string>
-    <string name="checkAutoLine">Pass Auto Line</string>
-    <string name="viewAuto">Autonomous</string>
-    <string name="checkHome">Cube in home switch</string>
-    <string name="checkOpp">Cube in opponent switch</string>
-    <string name="checkAutoScale">Cube in scale</string>
+    <string name="viewStart">Start Game</string>
     <string name="viewTeleop">Teleop</string>
-    <string name="cubesHome">Home Switch</string>
-    <string name="cubesOpp">Enemy Switch</string>
-    <string name="cubesScale">Scale</string>
-    <string name="cubesDrop">Cubes Dropped</string>
-    <string name="exchange">Exchange</string>
+    <string name="gamePreCargo">Pre Game Cargo</string>
+    <string name="gamePreHatch">Pre-Game Hatch</string>
+    <string name="gamePostHatch">Hatch in Game</string>
+    <string name="gamePostCargo">Cargo in Game</string>
     <string name="viewClimb">Climb</string>
     <string name="submit">Submit</string>
     <string name="clear">Clear</string>
@@ -32,16 +29,38 @@
     <string name="git">Github</string>
     <string name="email">Email Developer</string>
     <string name="climb_hint">How did the climb go?</string>
+    <string name="start_hint">How did the robot work in the first 15 seconds</string>
     <string name="description__intro">A simple scouting app that saves scouting data to a csv file.</string>
     <string name="title_permission_write">Access Storage</string>
-    <string name="description__permission_write">We need to access your storage to create and read the csv file that contains the scouting data.</string>
-    <string-array name="climb_options">
-        <item>Climbed</item>
-        <item>Climbed with 1 extra</item>
-        <item>Climbed with 2 extra</item>
-        <item>Climbed but failed</item>
-        <item>Platform</item>
-        <item>Levitate Powerup</item>
-        <item>Just did not try</item>
+    <string name="description__permission_write">We need to access your storage to create and read the file that contains the scouting data.</string>
+    <string name="emptyTeam">You forgot to enter a team name</string>
+    <string name="emptyHatchMech">You forgot to enter a Hatch Grab Mechanism</string>
+    <string name="emptyCargoMech">You forgot to enter a Cargo Grab Mechanism</string>
+    <string name="emptyLiftMech">You forgot to enter a Lift Mechanism</string>
+ <string-array name="climb_options">
+        <item>Did not answer</item>
+        <item>Level 1</item>
+        <item>Level 2</item>
+        <item>Level 3</item>
     </string-array>
+    <string-array name="start_options">
+        <item>Did not answer</item>
+        <item>Blind</item>
+        <item>Camera</item>
+        <item>Autonomous</item>
+    </string-array>
+    <string-array name="headers">
+        <item>Team Name</item>
+        <item>Start Game Control</item>
+        <item>Hatch Mechanism</item>
+        <item>Cargo Mechanism</item>
+        <item>Lift Mechanism</item>
+        <item>Hatch placed Pre-Game</item>
+        <item>Cargo placed Pre-Game</item>
+        <item>Hatch placed during the Game</item>
+        <item>Cargo placed during the Game</item>
+        <item>Climb</item>
+        <item>Notes</item>
+    </string-array>
+
 </resources>

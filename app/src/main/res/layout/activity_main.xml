@@ -36,18 +36,6 @@
                     android:orientation="vertical"
                     android:showDividers="middle">
 
-                    <EditText
-                        android:id="@+id/editName"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@android:color/transparent"
-                        android:ems="10"
-                        android:hint="@string/editName"
-                        android:inputType="textNoSuggestions"
-                        android:textAlignment="textStart"
-                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/editTeamNumber"
@@ -66,7 +54,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/card_view_auto"
+                android:id="@+id/card_view_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -85,54 +73,88 @@
                     android:showDividers="middle">
 
                     <TextView
-                        android:id="@+id/viewAuto"
+                        android:id="@+id/viewStart"
                         android:layout_width="300dp"
                         android:layout_height="35dp"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
                         android:fontFamily="monospace"
-                        android:text="@string/viewAuto"
+                        android:text="@string/viewStart"
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         android:textAppearance="@android:style/TextAppearance.Material.Medium"
                         android:textStyle="bold" />
 
-                    <CheckBox
-                        android:id="@+id/autoLineCheck"
+                    <Spinner
+                        android:id="@+id/spinnerStart"
                         android:layout_width="300dp"
                         android:layout_height="35dp"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="@string/checkAutoLine"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-                    <CheckBox
-                        android:id="@+id/autoHomeCheck"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/checkHome"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-                    <CheckBox
-                        android:id="@+id/autoOppCheck"
-                        android:layout_width="300dp"
-                        android:layout_height="35dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/checkOpp"
+                        android:entries="@array/start_options"
+                        android:fontFamily="monospace"
+                        android:prompt="@string/start_hint"
                         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                        android:visibility="gone" />
+                        android:textSize="18sp" />
+                </LinearLayout>
 
-                    <CheckBox
-                        android:id="@+id/autoScaleCheck"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_mech"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:elevation="100dp"
+                card_view:cardCornerRadius="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="?android:dividerHorizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+
+                    <EditText
+                        android:id="@+id/mechHatch"
                         android:layout_width="300dp"
                         android:layout_height="35dp"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="@string/checkAutoScale"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:hint="@string/mech_hatch"
+                        android:inputType="textNoSuggestions"
+                        android:textAlignment="textStart" />
+
+                    <EditText
+                        android:id="@+id/mechCargo"
+                        android:layout_width="300dp"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:hint="@string/mech_cargo"
+                        android:inputType="textNoSuggestions"
+                        android:textAlignment="textStart" />
+
+                    <EditText
+                        android:id="@+id/mechLift"
+                        android:layout_width="300dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:hint="@string/mech_lift"
+                        android:inputType="textNoSuggestions"
+                        android:textAlignment="textStart" />
 
                 </LinearLayout>
 
@@ -179,21 +201,21 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/cubesHome"
+                            android:id="@+id/hatchPreGame"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="15dp"
-                            android:text="@string/cubesHome"
-                            android:textSize="18sp" />
+                            android:text="@string/gamePreHatch"
+                            android:textSize="14sp" />
 
                         <Button
-                            android:id="@+id/decCubesHome"
+                            android:id="@+id/decHatchPre"
                             android:layout_width="60dp"
                             android:layout_height="50dp"
                             android:text="-" />
 
                         <TextView
-                            android:id="@+id/integer_number_home"
+                            android:id="@+id/integer_number_hatch_pre"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -202,7 +224,7 @@
                             android:textSize="18sp" />
 
                         <Button
-                            android:id="@+id/incCubesHome"
+                            android:id="@+id/incHatchPre"
                             android:layout_width="60dp"
                             android:layout_height="50dp"
                             android:text="+" />
@@ -218,21 +240,21 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/cubesOpp"
+                            android:id="@+id/cargoPreGame"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="15dp"
-                            android:text="@string/cubesOpp"
-                            android:textSize="18sp" />
+                            android:text="@string/gamePreCargo"
+                            android:textSize="14sp" />
 
                         <Button
-                            android:id="@+id/decCubesOpp"
+                            android:id="@+id/decCargoPre"
                             android:layout_width="60dp"
                             android:layout_height="50dp"
                             android:text="-" />
 
                         <TextView
-                            android:id="@+id/integer_number_opp"
+                            android:id="@+id/integer_number_cargo_pre"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -241,7 +263,7 @@
                             android:textSize="18sp" />
 
                         <Button
-                            android:id="@+id/incCubesOpp"
+                            android:id="@+id/incCargoPre"
                             android:layout_width="60dp"
                             android:layout_height="50dp"
                             android:text="+" />
@@ -257,21 +279,21 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/cubesScale"
+                            android:id="@+id/hatchPostGame"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="15dp"
-                            android:text="@string/cubesScale"
-                            android:textSize="18sp" />
+                            android:text="@string/gamePostHatch"
+                            android:textSize="14sp" />
 
                         <Button
-                            android:id="@+id/decCubesScale"
+                            android:id="@+id/decHatchPost"
                             android:layout_width="60dp"
                             android:layout_height="50dp"
                             android:text="-" />
 
                         <TextView
-                            android:id="@+id/integer_number_scale"
+                            android:id="@+id/integer_number_hatch_post"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -280,7 +302,7 @@
                             android:textSize="18sp" />
 
                         <Button
-                            android:id="@+id/incCubesScale"
+                            android:id="@+id/incHatchPost"
                             android:layout_width="60dp"
                             android:layout_height="50dp"
                             android:text="+" />
@@ -296,21 +318,21 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/cubesDrop"
+                            android:id="@+id/cargoPostGame"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="15dp"
-                            android:text="@string/cubesDrop"
-                            android:textSize="18sp" />
+                            android:text="@string/gamePostCargo"
+                            android:textSize="14sp" />
 
                         <Button
-                            android:id="@+id/decCubesDrop"
+                            android:id="@+id/decCargoPost"
                             android:layout_width="60dp"
                             android:layout_height="50dp"
                             android:text="-" />
 
                         <TextView
-                            android:id="@+id/integer_number_drop"
+                            android:id="@+id/integer_number_cargo_post"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -319,46 +341,7 @@
                             android:textSize="18sp" />
 
                         <Button
-                            android:id="@+id/incCubesDrop"
-                            android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:text="+" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="300dp"
-                        android:layout_height="60dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/exchange"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="@string/exchange"
-                            android:textSize="18sp" />
-
-                        <Button
-                            android:id="@+id/decEx"
-                            android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:text="-" />
-
-                        <TextView
-                            android:id="@+id/integer_number_ex"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
-                            android:text="0"
-                            android:textSize="18sp" />
-
-                        <Button
-                            android:id="@+id/incEx"
+                            android:id="@+id/incCargoPost"
                             android:layout_width="60dp"
                             android:layout_height="50dp"
                             android:text="+" />
