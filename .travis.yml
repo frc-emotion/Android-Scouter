@@ -5,6 +5,9 @@ after_failure: "cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml"
 notifications:
   slack: team2658cibuilds:Orygk1AVjYbtLFH8M2ETSeRT
 
+before_install:
+ - chmod +x gradlew
+
 android:
   components:
     - platform-tools
