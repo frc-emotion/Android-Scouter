@@ -46,38 +46,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final String EXCEL_FILE = "scouter_data_excel.xls";
 
     //contains the titles for the csv file
-    private String[] HEADERS ;
+    private final String[] HEADERS = {"Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
+            "Autonomous cube on scale?", "Number of cubes on home switch?", "Number of cubes on opponent switch?",
+            "Number of cubes on scale?", "Number of cubes dropped?", "Number of cubes in exchange?",
+            "Climb process?", "Notes"};
 
+    private EditText scouter;   //Scouter name
     private EditText teamNumber;    //Shows team number
-    private EditText hatchMech;    //Shows hatch mechanism
-    private EditText cargoMech;    //Shows cargo mechanism
-    private EditText lifttMech;    //Shows lift mechanism
     private EditText notesBlock;    //Notes block
-    private TextView telNumPreHatch;  //shows number of hatch panels installed before tel
-    private TextView telNumPreCargo; //shows number of cargo installed before tel
-    private TextView telNumHatch;   //shows number of hatch installed during tel
-    private TextView telNumCargo; //shows number of cargo installed during tel
-    private Button hatchPreInc;    //increment button
-    private Button hatchPreDec;    //decrement button
-    private Button cargoPreInc;    //increment button
-    private Button cargoPreDec;    //decrement button
-    private Button hatchInc;    //increment button
-    private Button hatchDec;    //decrement button
-    private Button cargoInc;    //increment button
-    private Button cargoDec;    //decrement button
+    private CheckBox autoLine;  //checkbox for auto line
+    private CheckBox autoHome;  //checkbox for auto home switch
+    private CheckBox autoOpp;   //checkbox for auto enemy switch
+    private CheckBox autoScale; //checkbox for auto scale
+    private TextView telNumHomeCubes;  //shows number of cubes in home during tel
+    private TextView telNumEnemySwitch; //shows number of cubes in enemy switch during tel
+    private TextView telNumScale;   //shows number of cubes in scale during tel
+    private TextView telNumDropped; //shows number of cubes dropped during tel
+    private TextView telNumExchange;    //shows number of cubes in exchange during tel
+    private Button inc1;    //increment buttons
+    private Button dec1;    //decrement buttons
+    private Button inc2;    //increment buttons
+    private Button dec2;    //decrement buttons
+    private Button inc3;    //increment buttons
+    private Button dec3;    //decrement buttons
+    private Button inc4;    //increment buttons
+    private Button dec4;    //decrement buttons
+    private Button inc5;    //increment buttons
+    private Button dec5;    //decrement
 
     private Button nuke;
 
-    private Spinner startSpin; //spinner for
-    private Spinner climbSpin; //spinner to explain climb process
+    private Spinner climbSpin;  //spinner to explain climb process
 
-    private int telHatchPre = 0;  //counter of cubes in home during auto
-    private int telCargoPre = 0;  //counter of cubes in home during auto
-    private int telHatch = 0;  //counter of cubes in home during auto
-    private int telCargo = 0;  //counter of cubes in home during auto
+    private int telHomeCubes = 0;  //counter of cubes in home during auto
+    private int telOppCubes = 0;  //counter of cubes in home during auto
+    private int telScaleCubes = 0;  //counter of cubes in home during auto
+    private int telDropCubes = 0;  //counter of cubes in home during auto
+    private int telEx = 0;  //counter of cubes in home during auto
 
-    private String startChoice;
-    private String liftChoice;//spinner selection made by user
+    private String spinnerChoice;   //spinner selection made by user
 
     private String baseDir = android.os.Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS).toString();
     private DateFormat df = new SimpleDateFormat("MM/dd/yyyy 'at' h:mm z");
@@ -87,9 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        HEADERS = getResources().getStringArray(R.array.headers);
-        //stuff to do only on first install
 
+        //stuff to do only on first install
         checkPermissions();
 
         //init stuff
@@ -129,63 +135,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initUI() {
         //init all items
+        scouter = (EditText) findViewById(R.id.editName);
 
-        teamNumber = findViewById(R.id.editTeamNumber);
-        notesBlock = findViewById(R.id.editNotes);
-        hatchMech = findViewById(R.id.mechHatch);
-        cargoMech = findViewById(R.id.mechCargo);
-        lifttMech = findViewById(R.id.mechLift);
-        telNumPreHatch = findViewById(R.id.integer_number_hatch_pre);
-        telNumPreCargo = findViewById(R.id.integer_number_cargo_pre);
-        telNumHatch = findViewById(R.id.integer_number_hatch_post);
-        telNumCargo = findViewById(R.id.integer_number_cargo_post);
+        autoLine = (CheckBox) findViewById(R.id.autoLineCheck);
+        autoHome = (CheckBox) findViewById(R.id.autoHomeCheck);
+        autoOpp = (CheckBox) findViewById(R.id.autoOppCheck);
+        autoScale = (CheckBox) findViewById(R.id.autoScaleCheck);
 
-        hatchPreInc = findViewById(R.id.incHatchPre);    //init increment button
-        hatchPreInc.setOnClickListener(this);  //set the click listener for the method onClick
+        teamNumber = (EditText) findViewById(R.id.editTeamNumber);
+        notesBlock = (EditText) findViewById(R.id.editNotes);
+        telNumHomeCubes = (TextView) findViewById(R.id.integer_number_home);
+        telNumEnemySwitch = (TextView) findViewById(R.id.integer_number_opp);
+        telNumScale = (TextView) findViewById(R.id.integer_number_scale);
+        telNumDropped = (TextView) findViewById(R.id.integer_number_drop);
+        telNumExchange = (TextView) findViewById(R.id.integer_number_ex);
 
-        hatchPreDec = findViewById(R.id.decHatchPre);    //init decrement button
-        hatchPreDec.setOnClickListener(this);  //set the click listener for the method onClick
+        inc1 = (Button) findViewById(R.id.incCubesHome);    //init increment button
+        inc1.setOnClickListener(this);  //set the click listener for the method onClick
 
-        cargoPreInc = findViewById(R.id.incCargoPre);    //init increment button
-        cargoPreInc.setOnClickListener(this);  //set the click listener for the method onClick
+        dec1 = (Button) findViewById(R.id.decCubesHome);    //init decrement button
+        dec1.setOnClickListener(this);  //set the click listener for the method onClick
 
-        cargoPreDec = findViewById(R.id.decCargoPre);    //init decrement button
-        cargoPreDec.setOnClickListener(this);  //set the click listener for the method onClick
+        inc2 = (Button) findViewById(R.id.incCubesOpp);    //init increment button
+        inc2.setOnClickListener(this);  //set the click listener for the method onClick
 
-        hatchInc = findViewById(R.id.incHatchPost);    //init increment button
-        hatchInc.setOnClickListener(this);  //set the click listener for the method onClick
+        dec2 = (Button) findViewById(R.id.decCubesOpp);    //init decrement button
+        dec2.setOnClickListener(this);  //set the click listener for the method onClick
 
-        hatchDec = findViewById(R.id.decHatchPost);    //init decrement button
-        hatchDec.setOnClickListener(this);  //set the click listener for the method onClick
+        inc3 = (Button) findViewById(R.id.incCubesScale);    //init increment button
+        inc3.setOnClickListener(this);  //set the click listener for the method onClick
 
-        cargoInc = findViewById(R.id.incCargoPost);    //init increment button
-        cargoInc.setOnClickListener(this);  //set the click listener for the method onClick
+        dec3 = (Button) findViewById(R.id.decCubesScale);    //init decrement button
+        dec3.setOnClickListener(this);  //set the click listener for the method onClick
 
-        cargoDec = findViewById(R.id.decCargoPost);    //init decrement button
-        cargoDec.setOnClickListener(this);  //set the click listener for the method onClick
+        inc4 = (Button) findViewById(R.id.incCubesDrop);    //init increment button
+        inc4.setOnClickListener(this);  //set the click listener for the method onClick
 
-        nuke = findViewById(R.id.button_clearCsv);
+        dec4 = (Button) findViewById(R.id.decCubesDrop);    //init decrement button
+        dec4.setOnClickListener(this);  //set the click listener for the method onClick
 
-        climbSpin = findViewById(R.id.spinnerClimb);
-        startSpin = findViewById(R.id.spinnerStart);
+        inc5 = (Button) findViewById(R.id.incEx);    //init increment button
+        inc5.setOnClickListener(this);  //set the click listener for the method onClick
+
+        dec5 = (Button) findViewById(R.id.decEx);    //init decrement button
+        dec5.setOnClickListener(this);  //set the click listener for the method onClick
+
+        nuke = (Button) findViewById(R.id.button_clearCsv);
+        nuke.setEnabled(false);
+
+        climbSpin = (Spinner) findViewById(R.id.spinnerClimb);
 
         //spinnerchoice becomes the selected on the spinner
         climbSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                liftChoice = parent.getItemAtPosition(position).toString();
+                spinnerChoice = parent.getItemAtPosition(position).toString();
             }
-
-
-            public void onNothingSelected(AdapterView<?> parent) {
-                //do nothing
-            }
-        });
-
-        startSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                startChoice = parent.getItemAtPosition(position).toString();
-            }
-
 
             public void onNothingSelected(AdapterView<?> parent) {
                 //do nothing
@@ -195,25 +199,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void submitData(View v) {
         //convert all data to strings
+        String scouterName = scouter.getText().toString();  //took this out of the data file, still have to take out all code for it
         String teamNum = teamNumber.getText().toString();
-        String HatchMech = hatchMech.getText().toString();
-        String CargoMech = cargoMech.getText().toString();
-        String LiftMech= lifttMech.getText().toString();
 
         if (teamNum.isEmpty()) {
-            Toast.makeText(getApplicationContext(), getString(R.string.emptyTeam), Toast.LENGTH_LONG).show();
-        } else
-        if (HatchMech.isEmpty()) {
-            Toast.makeText(getApplicationContext(), getString(R.string.emptyHatchMech), Toast.LENGTH_LONG).show();
-        } else
-        if (CargoMech.isEmpty()) {
-            Toast.makeText(getApplicationContext(), getString(R.string.emptyCargoMech), Toast.LENGTH_LONG).show();
-        } else
-        if (LiftMech.isEmpty()) {
-            Toast.makeText(getApplicationContext(), getString(R.string.emptyLiftMech), Toast.LENGTH_LONG).show();
+            teamNum = "0000";
         }
 
-
+        String autoLineS = Utils.checkBoxToString(autoLine);
+        String autoHomeS = Utils.checkBoxToString(autoHome);
+        //String autoOppS = Utils.checkBoxToString(autoOpp);
+        String autoScaleS = Utils.checkBoxToString(autoScale);
+        String telHome = "" + telHomeCubes;
+        String telOpp = "" + telOppCubes;
+        String telScale = "" + telScaleCubes;
+        String telDropped = "" + telDropCubes;
+        String exchange = "" + telEx;
+        String climb = "" + spinnerChoice;
         String notes = notesBlock.getText().toString();
 
         if (notes.isEmpty()) {
@@ -221,8 +223,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         //array of one team scouted
-        String[] dataToSubmit = {teamNum, startChoice,HatchMech,CargoMech ,LiftMech,
-                telHatchPre+"", telCargoPre+"", telHatch+"", telCargo+"", liftChoice, notes};
+        String[] dataToSubmit = {teamNum, autoLineS, autoHomeS, autoScaleS,
+                telHome, telOpp, telScale, telDropped, exchange, climb, notes};
 
         //write the data
         try {
@@ -236,46 +238,73 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //on click method for counters
     public void onClick(View v) {
+        boolean showTextHomeCubes = false;
+        boolean showTextOppCubes = false;
+        boolean showTextScaleCubes = false;
+        boolean showTextDropCubes = false;
+        boolean showTextEx = false;
         switch (v.getId()) {
-            case R.id.incHatchPre:
-                telHatchPre++;
-                telNumPreHatch.setText(telHatchPre+"");
+            case R.id.incCubesHome:
+                telHomeCubes++;
+                showTextHomeCubes = true;
                 break;   //increment
-            case R.id.decHatchPre:
-                if (telHatchPre > 0)
-                    telHatchPre--;
-                telNumPreHatch.setText(telHatchPre+"");
+            case R.id.decCubesHome:
+                if (telHomeCubes > 0)
+                    telHomeCubes--;
+                showTextHomeCubes = true;
                 break;   //decrement
-            case R.id.incCargoPre:
-                telCargoPre++;
-                telNumPreCargo.setText(telCargoPre+"");
+            case R.id.incCubesOpp:
+                telOppCubes++;
+                showTextOppCubes = true;
                 break;   //increment
-            case R.id.decCargoPre:
-                if (telCargoPre > 0)
-                    telCargoPre--;
-                telNumPreCargo.setText(telCargoPre+"");
-                break;   //decrement
-            case R.id.incHatchPost:
-                telHatch++;
-                telNumHatch.setText(telHatch+"");
-                break;   //increment
-            case R.id.decHatchPost:
-                if (telHatch > 0)
-                    telHatch--;
-                telNumHatch.setText(telHatch+"");
-                break;   //decrement
-            case R.id.incCargoPost:
-                telCargo++;
-                telNumCargo.setText(telCargo+"");
-                break;   //increment
-            case R.id.decCargoPost:
-                if (telCargo > 0)
-                    telCargo--;
-                telNumCargo.setText(telCargo+"");
+            case R.id.decCubesOpp:
+                if (telOppCubes > 0)
+                    telOppCubes--;
+                showTextOppCubes = true;
                 break;   //decrement
 
+            case R.id.incCubesScale:
+                telScaleCubes++;
+                showTextScaleCubes = true;
+                break;   //increment
+            case R.id.decCubesScale:
+                if (telScaleCubes > 0)
+                    telScaleCubes--;
+                showTextScaleCubes = true;
+                break;   //decrement
+            case R.id.incCubesDrop:
+                telDropCubes++;
+                showTextDropCubes = true;
+                break;   //increment
+            case R.id.decCubesDrop:
+                if (telDropCubes > 0)
+                    telDropCubes--;
+                showTextDropCubes = true;
+                break;   //decrement
+            case R.id.incEx:
+                telEx++;
+                showTextEx = true;
+                break;   //increment
+            case R.id.decEx:
+                if (telEx > 0)
+                    telEx--;
+                showTextEx = true;
+                break;   //decrement
         }
+        if (showTextHomeCubes)
+            telNumHomeCubes.setText("" + telHomeCubes);     //refresh view
 
+        if (showTextOppCubes)
+            telNumEnemySwitch.setText("" + telOppCubes);    //refresh view
+
+        if (showTextScaleCubes)
+            telNumScale.setText("" + telScaleCubes);    //refresh view
+
+        if (showTextDropCubes)
+            telNumDropped.setText("" + telDropCubes);   //refresh view
+
+        if (showTextEx)
+            telNumExchange.setText("" + telEx);     //refresh view
     }
 
     public void clearData(View V) {
@@ -284,14 +313,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void clear() {
         //clear/reset all data entries
-
-        telNumCargo.setText("0");
-        telNumHatch.setText("0");
-        telNumPreHatch.setText("0");
-        telNumPreCargo.setText("0");
+        scouter.setText("");
+        teamNumber.setText("");
+        autoLine.setChecked(false);
+        autoHome.setChecked(false);
+        autoOpp.setChecked(false);
+        autoScale.setChecked(false);
+        telHomeCubes = 0;
+        telOppCubes = 0;
+        telScaleCubes = 0;
+        telDropCubes = 0;
+        telEx = 0;
+        updateCounters();
     }
 
-
+    private void updateCounters() {
+        //update counters after reset
+        telNumHomeCubes.setText("" + telHomeCubes);
+        telNumEnemySwitch.setText("" + telOppCubes);
+        telNumScale.setText("" + telScaleCubes);
+        telNumDropped.setText("" + telDropCubes);
+        telNumExchange.setText("" + telEx);
+    }
 
     private void writeCSV(String[] data) throws IOException {
         String filePath = baseDir + File.separator + CSV_FILE;
@@ -301,15 +344,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CSVWriter writer;
 
         // if file exists
-   //     if (f.exists() && !f.isDirectory()) {
-     //       FileWriter mFileWriter = new FileWriter(filePath, true);
-       //     writer = new CSVWriter(mFileWriter);
-        //}
+        if (f.exists() && !f.isDirectory()) {
+            FileWriter mFileWriter = new FileWriter(filePath, true);
+            writer = new CSVWriter(mFileWriter);
+        }
         // else create a file with the headers
-       // else {
+        else {
             writer = new CSVWriter(new FileWriter(filePath));
             writer.writeNext(HEADERS);  //Write line by line (Array)
-        //}
+        }
 
         writer.writeNext(data);
         writer.close();
@@ -336,7 +379,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         writer = new CSVWriter(new FileWriter(filePath));
         writer.writeNext(HEADERS);  //Write line by line (Array)
         writer.close();
-
+        nuke.setEnabled(false);
     }
 
     //this method is the onclick of the export method below

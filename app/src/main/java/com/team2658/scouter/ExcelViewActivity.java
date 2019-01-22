@@ -18,7 +18,7 @@ import static com.levitnudi.legacytableview.LegacyTableView.MESH;
 public class ExcelViewActivity extends AppCompatActivity {
 
     //contains the titles for the csv file
-    private String[] HEADERS = {"Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
+    private final String[] HEADERS = {"Team Number", "Passed autonomous line?", "Autonomous cube on home switch?",
             "Autonomous cube on scale?",
             "Number of cubes on home switch?", "Number of cubes on opponent switch?",
             "Number of cubes on scale?", "Number of cubes dropped?", "Number of cubes in exchange?",
@@ -30,7 +30,7 @@ public class ExcelViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_excelview);
-        HEADERS = getResources().getStringArray(R.array.headers);
+
         //try to load the data of file to array
         try {
             loadData();
