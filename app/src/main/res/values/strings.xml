@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Android-Scouter</string>
+    <string name="editTeam">Team Number</string>
+    <string name="drawSandstorm">Sand Storm</string>
+    <string name="drawPath">Draw Path</string>
 </resources>
