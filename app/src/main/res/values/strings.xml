@@ -3,4 +3,23 @@
     <string name="editTeam">Team Number</string>
     <string name="drawSandstorm">Sand Storm</string>
     <string name="drawPath">Draw Path</string>
+
+
+    <string name="pencil">Pencil</string>
+    <string name="airbrush">AirBrush</string>
+    <string name="calligraphy">Calligraphy</string>
+    <string name="pen">Pen</string>
+    <string name="eraser">Eraser</string>
+
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="clear">Clear</string>
+    <string name="reset_zoom">Reset Zoom</string>
+    <string name="enterzoommode">Zoom In</string>
+    <string name="exitzoommode">Zoom Out</string>
+    <string name="import_bitmap">Set Image</string>
+    <string name="export">Export</string>
+    <string name="export_without_bg">Export without Background</string>
+    <string name="set_background_null">Set Image as Null</string>
+
 </resources>

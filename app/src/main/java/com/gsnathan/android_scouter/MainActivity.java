@@ -1,14 +1,20 @@
 package com.gsnathan.android_scouter;
 
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
+import android.widget.ImageView;
 
-import com.divyanshu.draw.activity.DrawingActivity;
+import com.raed.drawingview.DrawingView;
+
+import java.io.File;
+import java.net.URI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,24 +24,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (data != null && resultCode == Activity.RESULT_OK){
-            switch (requestCode){
-                case DRAW_CODE:
-                    byte[] byteArray = data.getByteArrayExtra("bitmap");
-                    saveImage(byteArray);
-            }
+        ImageView imageView = (ImageView) findViewById(R.id.field_view);
+        File img = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/DeepScouterApp/field_image.png");
+        if (!img.exists())
+            imageView.setImageResource(R.drawable.field_image);
+        else {
+            Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
+            imageView.setImageBitmap(myBitmap);
         }
     }
 
-    public void drawStormPath(View v){
-        startActivityForResult(new Intent(this, DrawingActivity.class), DRAW_CODE);
+
+    public void drawStormPath(View v) {
+        startActivity(new Intent(this, DrawActivity.class));
     }
 
-    private void saveImage(byte[] byteArray){
+    private void saveImage(byte[] byteArray) {
 
     }
 }
