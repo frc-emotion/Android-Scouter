@@ -1,6 +1,7 @@
-package com.team2658.scouter;
+package com.gsnathan.android_scouter;
 
 import android.content.Context;
+
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -17,10 +18,10 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-    public void useAppContext() throws Exception {
+    public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.team2658.scouter", appContext.getPackageName());
+        assertEquals("com.gsnathan.android_scouter", appContext.getPackageName());
     }
 }

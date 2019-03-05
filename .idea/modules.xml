@@ -3,11 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android-Scouter.iml" filepath="$PROJECT_DIR$/Android-Scouter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Android-Scouter.iml" filepath="$PROJECT_DIR$/Android-Scouter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/poi-3.17/poi-3.17.iml" filepath="$PROJECT_DIR$/poi-3.17/poi-3.17.iml" />
-      <module fileurl="file://$PROJECT_DIR$/poi-3.17/poi-3.17.iml" filepath="$PROJECT_DIR$/poi-3.17/poi-3.17.iml" />
     </modules>
   </component>
 </project>
