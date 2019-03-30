@@ -19,13 +19,24 @@ import java.net.URI;
 public class MainActivity extends AppCompatActivity {
 
     private static final int DRAW_CODE = 2658;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView imageView = (ImageView) findViewById(R.id.field_view);
+        imageView = (ImageView) findViewById(R.id.field_view);
+       updateSandstormIMage();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateSandstormIMage();
+    }
+
+    private void updateSandstormIMage(){
         File img = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/DeepScouterApp/field_image.png");
         if (!img.exists())
             imageView.setImageResource(R.drawable.field_image);
