@@ -21,5 +21,39 @@
     <string name="export">Export</string>
     <string name="export_without_bg">Export without Background</string>
     <string name="set_background_null">Set Image as Null</string>
+    <string name="sand_start_prompt">Start Position</string>
+    <string name="sand_cargo">Cargo</string>
+    <string name="sand_hatch">Hatches</string>
+    <string name="sand_piece_prompt">Starting Piece</string>
+    <string name="midgame">Mid-Game</string>
+    <string name="ship">Cargo Ship</string>
+    <string name="midgame_ship">Mid-Game (Cargo Ship)</string>
+    <string name="midgame_rocket">Mid-Game (Rocket)</string>
+    <string name="level1">Level 1</string>
+    <string name="level2">Level 2</string>
+    <string name="level3">Level 3</string>
+    <string name="midgame_overall">Overall</string>
+    <string name="drop_overall">Dropped Pieces</string>
+    <string name="endgame">End-Game</string>
+    <string name="eng_postion">Climb Position</string>
+    <string name="editNotes">Notes</string>
+
+    <string-array name="sand_start">
+        <item>Level 1</item>
+        <item>Level 2</item>
+    </string-array>
+
+    <string-array name="climb_pos">
+        <item>Level 1</item>
+        <item>Level 2</item>
+        <item>Level 3</item>
+        <item>Didn\'t even get there</item>
+    </string-array>
+
+    <string-array name="sand_piece">
+        <item>No Piece</item>
+        <item>Hatch</item>
+        <item>Cargo</item>
+    </string-array>
 
 </resources>

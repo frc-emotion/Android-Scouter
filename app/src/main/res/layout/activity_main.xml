@@ -8,7 +8,9 @@
 
     <ScrollView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="69dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,9 +24,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:elevation="100dp"
                 card_view:cardCornerRadius="2dp">
 
@@ -42,10 +44,10 @@
                         android:layout_height="35dp"
                         android:layout_margin="15dp"
                         android:background="@android:color/transparent"
-                        android:textSize="20sp"
                         android:hint="@string/editTeam"
                         android:inputType="number"
-                        android:textAlignment="textStart" />
+                        android:textAlignment="textStart"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -56,9 +58,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:elevation="100dp"
                 card_view:cardCornerRadius="2dp">
 
@@ -75,24 +77,482 @@
                         android:layout_height="35dp"
                         android:layout_margin="15dp"
                         android:background="@android:color/transparent"
-                        android:textSize="20sp"
                         android:text="@string/drawSandstorm"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_start_prompt"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/spin_sand_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:entries="@array/sand_start"
+                            android:prompt="@string/sand_start_prompt" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_piece_prompt"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/spin_sand_piece"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:entries="@array/sand_piece"
+                            android:prompt="@string/sand_start_prompt" />
+
+                    </LinearLayout>
 
                     <ImageView
                         android:id="@+id/field_view"
-                        android:layout_margin="15dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp" />
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
-                        android:text="@string/drawPath"
                         android:onClick="drawStormPath"
-                        />
+                        android:text="@string/drawPath" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_cargo"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/sand_cargo_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            app:backGroundColor="@color/colorAccent"
+                            app:textSize="8sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_hatch"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/sand_hatch_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            app:backGroundColor="@color/colorAccent"
+                            app:textSize="8sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_midgame_ship"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:elevation="100dp"
+                card_view:cardCornerRadius="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="?android:dividerHorizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/midgame_ship"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_cargo"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/game_ship_cargo_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            app:backGroundColor="@color/colorAccent"
+                            app:textSize="8sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_hatch"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/game_ship_hatch_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            app:backGroundColor="@color/colorAccent"
+                            app:textSize="8sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_midgame_rocket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:elevation="100dp"
+                card_view:cardCornerRadius="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="?android:dividerHorizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/midgame_rocket"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_cargo"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/game_rocket_cargo_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            app:backGroundColor="@color/colorAccent"
+                            app:textSize="8sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_hatch"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/game_rocket_hatch_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            app:backGroundColor="@color/colorAccent"
+                            app:textSize="8sp" />
+
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/rocket_level1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="15dp"
+                        android:text="@string/level1"
+                        android:textSize="18sp" />
+
+                    <CheckBox
+                        android:id="@+id/rocket_level2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="15dp"
+                        android:text="@string/level2"
+                        android:textSize="18sp" />
+
+                    <CheckBox
+                        android:id="@+id/rocket_level3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="15dp"
+                        android:text="@string/level3"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_overall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:elevation="100dp"
+                card_view:cardCornerRadius="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="?android:dividerHorizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/drop_overall"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_cargo"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/drop_cargo_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            app:backGroundColor="@color/colorAccent"
+                            app:textSize="8sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/sand_hatch"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                            android:id="@+id/drop_hatch_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            app:backGroundColor="@color/colorAccent"
+                            app:textSize="8sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_endgame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:elevation="100dp"
+                card_view:cardCornerRadius="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="?android:dividerHorizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_margin="15dp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/endgame"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:background="@android:color/transparent"
+                            android:text="@string/eng_postion"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <Spinner
+                            android:id="@+id/spin_climb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:entries="@array/climb_pos"
+                            android:prompt="@string/eng_postion" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="?android:dividerHorizontal"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:showDividers="middle">
+
+                        <EditText
+                            android:id="@+id/editNotes"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_margin="15dp"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/editNotes"
+                            android:inputType="text"
+                            android:textAlignment="textStart"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
