@@ -1,26 +1,20 @@
 package com.gsnathan.android_scouter;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.raed.drawingview.DrawingView;
 
-import java.io.File;
-import java.lang.reflect.Array;
-import java.net.URI;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     CheckBox level1, level2, level3;
     ArrayList<ElegantNumberButton> counters;
     int[] counterValues;
-
+    CSVWriterTool writer;
+    Button deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,18 +67,86 @@ public class MainActivity extends AppCompatActivity {
         level1 = findViewById(R.id.rocket_level1);
         level2 = findViewById(R.id.rocket_level2);
         level3 = findViewById(R.id.rocket_level3);
+        deleteButton = findViewById(R.id.clearButton);
+        deleteButton.setOnClickListener(v -> clearView());
+        deleteButton.setOnLongClickListener(v -> {
+
+            AlertDialog.Builder deleteLog = new AlertDialog.Builder(MainActivity.this);
+            deleteLog.setMessage("Are you sure you want to delete the whole file? You will lose all data!");
+            deleteLog.setCancelable(false);
+
+            deleteLog.setPositiveButton(
+                    "Yes",
+                    (dialog, id) -> {
+                        try {
+                            writer.clearCSV();
+                            clearView();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        dialog.cancel();
+                    });
+
+            deleteLog.setNegativeButton(
+                    "No",
+                    (dialog, id) -> dialog.cancel());
+
+            AlertDialog deleteCSV = deleteLog.create();
+            deleteCSV.show();
+
+            return false;
+        });
+
+        writer = new CSVWriterTool();
 
         updateCounterValues();
     }
 
-    private void updateCounterValues(){
-        counters.forEach((e) -> e.setOnValueChangeListener((view, oldValue, newValue) -> {
+    private void updateCounterValues() {
+        counters.forEach(e -> e.setOnValueChangeListener((view, oldValue, newValue) -> {
             counterValues[counters.indexOf(e)] = newValue;
             Log.d("Counts", Arrays.toString(counterValues));
         }));
     }
 
     public void saveData(View v) {
+        String teamNum = teamText.getText().toString();
+        int startSpinnerChoice = sandStartPosition.getSelectedItemPosition();
+        int startSpinnerPiece = sandStartPiece.getSelectedItemPosition();
+        int sandCargo = counterValues[0];
+        int sandHatch = counterValues[1];
+        int shipCargo = counterValues[2];
+        int shipHatch = counterValues[3];
+        int rocketCargo = counterValues[4];
+        int rocketHatches = counterValues[5];
+        int ifLevel1 = level1.isChecked() ? 1 : 0;
+        int ifLevel2 = level2.isChecked() ? 1 : 0;
+        int ifLevel3 = level3.isChecked() ? 1 : 0;
+        int dropCargo = counterValues[6];
+        int dropHatch = counterValues[7];
+        int climbPosition = climb.getSelectedItemPosition();
+        String notes = notesText.getText().toString();
 
+        String[] data = {teamNum, String.valueOf(startSpinnerChoice), String.valueOf(startSpinnerPiece), String.valueOf(sandCargo), String.valueOf(sandHatch), String.valueOf(shipCargo), String.valueOf(shipHatch), String.valueOf(rocketCargo), String.valueOf(rocketHatches),
+                String.valueOf(ifLevel1), String.valueOf(ifLevel2), String.valueOf(ifLevel3), String.valueOf(dropCargo), String.valueOf(dropHatch), String.valueOf(climbPosition), notes};
+        try {
+            writer.writeLineToCSV(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        clearView();
+    }
+
+    private void clearView() {
+        teamText.getText().clear();
+        sandStartPosition.setSelection(0, true);
+        sandStartPiece.setSelection(0, true);
+        counters.forEach(e -> e.setNumber("0"));
+        Arrays.fill(counterValues, 0);
+        level1.setChecked(false);
+        level2.setChecked(false);
+        level3.setChecked(false);
+        climb.setSelection(0, true);
+        notesText.getText().clear();
     }
 }

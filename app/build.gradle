@@ -37,8 +37,8 @@ dependencies {
     //Ripple Effect Library
     implementation 'com.balysv:material-ripple:1.0.2'
 
-    //Drawing Library
-    implementation 'com.raed.drawingview:drawingview:1.3.0'
+    //CSV Library
+    implementation 'com.opencsv:opencsv:4.0'
 
     //Number Button Library
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
