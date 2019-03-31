@@ -37,6 +37,8 @@
     <string name="endgame">End-Game</string>
     <string name="eng_postion">Climb Position</string>
     <string name="editNotes">Notes</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
 
     <string-array name="sand_start">
         <item>Level 1</item>

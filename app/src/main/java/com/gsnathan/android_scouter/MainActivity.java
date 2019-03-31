@@ -9,49 +9,69 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.raed.drawingview.DrawingView;
 
 import java.io.File;
 import java.net.URI;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int DRAW_CODE = 2658;
-    ImageView imageView;
+    EditText teamText, notesText;
+    Spinner sandStartPosition, sandStartPiece, climb;
+    ElegantNumberButton sandCargo, sandHatch, shipCargo, shipHatch, rocketCargo, rocketHatch, dropCargo, dropHatch;
+    CheckBox level1, level2, level3;
+    ArrayList<ElegantNumberButton> counters;
+    ArrayList<Integer> counterValues;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageView = (ImageView) findViewById(R.id.field_view);
-       updateSandstormIMage();
+        teamText = findViewById(R.id.editTeamNumber);
+        notesText = findViewById(R.id.editNotes);
+
+        sandStartPosition = findViewById(R.id.spin_sand_start);
+        sandStartPiece = findViewById(R.id.spin_sand_piece);
+        climb = findViewById(R.id.spin_climb);
+
+        sandCargo = findViewById(R.id.sand_cargo_count);
+        sandHatch = findViewById(R.id.sand_hatch_count);
+        shipCargo = findViewById(R.id.game_ship_cargo_count);
+        shipHatch = findViewById(R.id.game_ship_hatch_count);
+        rocketCargo = findViewById(R.id.game_rocket_cargo_count);
+        rocketHatch = findViewById(R.id.game_rocket_hatch_count);
+        dropCargo = findViewById(R.id.drop_cargo_count);
+        dropHatch = findViewById(R.id.drop_hatch_count);
+
+        counters = new ArrayList<ElegantNumberButton>() {
+            {
+                add(sandCargo);
+                add(sandHatch);
+                add(shipCargo);
+                add(shipHatch);
+                add(rocketCargo);
+                add(rocketHatch);
+                add(dropCargo);
+                add(dropHatch);
+            }
+        };
+        counterValues = new ArrayList<Integer>();
+
+        level1 = findViewById(R.id.rocket_level1);
+        level2 = findViewById(R.id.rocket_level2);
+        level3 = findViewById(R.id.rocket_level3);
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        updateSandstormIMage();
-    }
-
-    private void updateSandstormIMage(){
-        File img = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath() + "/DeepScouterApp/field_image.png");
-        if (!img.exists())
-            imageView.setImageResource(R.drawable.field_image);
-        else {
-            Bitmap myBitmap = BitmapFactory.decodeFile(img.getAbsolutePath());
-            imageView.setImageBitmap(myBitmap);
-        }
-    }
-
-
-    public void drawStormPath(View v) {
-        startActivity(new Intent(this, DrawActivity.class));
-    }
-
-    private void saveImage(byte[] byteArray) {
+    public void saveData(View v) {
 
     }
 }
