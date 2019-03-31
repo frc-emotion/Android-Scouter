@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -18,8 +19,10 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.raed.drawingview.DrawingView;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ElegantNumberButton sandCargo, sandHatch, shipCargo, shipHatch, rocketCargo, rocketHatch, dropCargo, dropHatch;
     CheckBox level1, level2, level3;
     ArrayList<ElegantNumberButton> counters;
-    ArrayList<Integer> counterValues;
+    int[] counterValues;
 
 
     @Override
@@ -64,11 +67,20 @@ public class MainActivity extends AppCompatActivity {
                 add(dropHatch);
             }
         };
-        counterValues = new ArrayList<Integer>();
+        counterValues = new int[counters.size()];
 
         level1 = findViewById(R.id.rocket_level1);
         level2 = findViewById(R.id.rocket_level2);
         level3 = findViewById(R.id.rocket_level3);
+
+        updateCounterValues();
+    }
+
+    private void updateCounterValues(){
+        counters.forEach((e) -> e.setOnValueChangeListener((view, oldValue, newValue) -> {
+            counterValues[counters.indexOf(e)] = newValue;
+            Log.d("Counts", Arrays.toString(counterValues));
+        }));
     }
 
     public void saveData(View v) {
