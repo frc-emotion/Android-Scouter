@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     int[] counterValues;
     CSVWriterTool writer;
     Button deleteButton;
+    public static StringBuilder ultimate;
+    int saves = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     (dialog, id) -> {
                         try {
                             writer.clearCSV();
+                            saves = 0;
                             clearView();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -103,10 +107,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateCounterValues() {
-        counters.forEach(e -> e.setOnValueChangeListener((view, oldValue, newValue) -> {
-            counterValues[counters.indexOf(e)] = newValue;
-            Log.d("Counts", Arrays.toString(counterValues));
-        }));
+        for(ElegantNumberButton e : counters){
+            e.setOnValueChangeListener((view, oldValue, newValue) -> {
+                counterValues[counters.indexOf(e)] = newValue;
+                Log.d("Counts", Arrays.toString(counterValues));
+            });
+        }
     }
 
     public void saveData(View v) {
@@ -125,28 +131,61 @@ public class MainActivity extends AppCompatActivity {
         int dropCargo = counterValues[6];
         int dropHatch = counterValues[7];
         int climbPosition = climb.getSelectedItemPosition();
-        String notes = notesText.getText().toString();
+        String notes = notesText.getText().toString().isEmpty() ? "No Notes" : notesText.getText().toString();
 
         String[] data = {teamNum, String.valueOf(startSpinnerChoice), String.valueOf(startSpinnerPiece), String.valueOf(sandCargo), String.valueOf(sandHatch), String.valueOf(shipCargo), String.valueOf(shipHatch), String.valueOf(rocketCargo), String.valueOf(rocketHatches),
                 String.valueOf(ifLevel1), String.valueOf(ifLevel2), String.valueOf(ifLevel3), String.valueOf(dropCargo), String.valueOf(dropHatch), String.valueOf(climbPosition), notes};
         try {
             writer.writeLineToCSV(data);
         } catch (IOException e) {
-            e.printStackTrace();
+            Snackbar mySnackBar = Snackbar.make(findViewById(android.R.id.content), "IOEXCEPTION", Snackbar.LENGTH_LONG);
+            mySnackBar.show();
         }
         clearView();
+        Snackbar mySnackBar = Snackbar.make(findViewById(android.R.id.content), "Saved data!", Snackbar.LENGTH_LONG);
+        mySnackBar.show();
+
+        saves++;
+        if(saves == 5){
+            Snackbar snack = Snackbar.make(findViewById(android.R.id.content), "Please scan with the master app! (10 saves)", Snackbar.LENGTH_LONG);
+            snack.show();
+        }
     }
 
     private void clearView() {
         teamText.getText().clear();
-        sandStartPosition.setSelection(0, true);
-        sandStartPiece.setSelection(0, true);
-        counters.forEach(e -> e.setNumber("0"));
+        sandStartPosition.setSelection(0);
+        sandStartPiece.setSelection(0);
+        for (ElegantNumberButton e : counters){
+            e.setNumber("0");
+        }
         Arrays.fill(counterValues, 0);
         level1.setChecked(false);
         level2.setChecked(false);
         level3.setChecked(false);
-        climb.setSelection(0, true);
+        climb.setSelection(0);
         notesText.getText().clear();
+    }
+
+    public void genQR(View v) {
+        ArrayList<String[]> dataList = null;
+        try {
+            dataList = writer.readCsvAsList();
+            ultimate = new StringBuilder();
+            ultimate.append("");
+            for (int x = 0; x < dataList.size(); x++) {
+                for (String s : dataList.get(x)) {
+                    ultimate.append(s).append(",");
+                }
+                if (x != dataList.size() - 1)
+                    ultimate.append("br,");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        QRDialog dialog = new QRDialog();
+        dialog.show(getSupportFragmentManager(), "h");
     }
 }

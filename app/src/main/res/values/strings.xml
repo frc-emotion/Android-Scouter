@@ -39,6 +39,7 @@
     <string name="editNotes">Notes</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="qr">QR Code</string>
 
     <string-array name="sand_start">
         <item>Level 1</item>

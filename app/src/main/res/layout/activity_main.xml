@@ -577,6 +577,13 @@
                         android:layout_margin="15dp"
                         android:text="@string/delete" />
 
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="@string/qr"
+                        android:onClick="genQR"/>
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

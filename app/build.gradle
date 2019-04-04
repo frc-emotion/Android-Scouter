@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.gsnathan.android_scouter"
-        minSdkVersion 24
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -42,4 +42,9 @@ dependencies {
 
     //Number Button Library
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
+    //QRCode Gen
+    implementation 'com.github.kenglxn.QRGen:android:2.5.0'
+
+    implementation 'com.github.smhdk:KM-Popup-Image-Slider:v1.2.1'
 }
