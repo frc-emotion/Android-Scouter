@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/frc-emotion/Android-Scouter.svg?branch=master)](https://travis-ci.org/frc-emotion/Android-Scouter)
 
+# This app is for the 2018 FRC Season. Go [here](https://github.com/frc-emotion/Android-Scouter/tree/scouterV2) for the 2019 Season.
+
 #  ![Scouter](https://github.com/frc-emotion/Android-Scouter/blob/master/app/src/main/res/mipmap-mdpi/ic_launcher.png "Scouter") Android-Scouter
 
 * Scouter is a simple scouting app that saves all info into a [csv](https://en.wikipedia.org/wiki/Comma-separated_values) file
